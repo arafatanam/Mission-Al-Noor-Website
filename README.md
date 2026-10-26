@@ -21,6 +21,7 @@ A static, single-file website. No build step, no framework, no backend. One `ind
 ├── index.html     the whole site
 ├── favicon.svg    browser tab icon, linked in <head>
 ├── pp.jpg         founder photo (optional, hidden if missing)
+├── pp2.jpg        founder photo too (optional)
 ├── tsk.jpg        Shariat and Khidmat banner (optional, hidden if missing)
 ├── cv.pdf         founder CV, linked from the Founder view
 └── README.md
