@@ -4,15 +4,15 @@ A static, single-file website. No build step, no framework, no backend. One `ind
 
 ## 1. Stack
 
-| Layer | Choice |
-|---|---|
-| Markup | HTML5, one file |
-| Styling | Plain CSS with custom properties |
-| Logic | Vanilla JavaScript (ES6), no dependencies |
-| Routing | Hash-based, client side |
-| Fonts | Google Sans (Google Fonts), IBM Plex Sans Arabic for Urdu text |
-| Video | YouTube iframe embeds |
-| Hosting target | Vercel (any static host works) |
+| Layer          | Choice                                                         |
+| -------------- | -------------------------------------------------------------- |
+| Markup         | HTML5, one file                                                |
+| Styling        | Plain CSS with custom properties                               |
+| Logic          | Vanilla JavaScript (ES6), no dependencies                      |
+| Routing        | Hash-based, client side                                        |
+| Fonts          | Google Sans (Google Fonts), IBM Plex Sans Arabic for Urdu text |
+| Video          | YouTube iframe embeds                                          |
+| Hosting target | Vercel (any static host works)                                 |
 
 ## 2. File structure
 
@@ -44,16 +44,16 @@ Mobile reorders these with the CSS `order` property. Section 6 explains how.
 
 Views switch through the URL hash. No page reloads, no server rules needed.
 
-| Hash | Content |
-|---|---|
-| `#home` (default) | Intro, founder card, three section cards, featured articles |
-| `#founder` | Full profile, links, conference videos |
-| `#tariqat` | TaqwaTalks video series |
-| `#shariat` | Shariat text with floated banner |
-| `#khidmat` | Khidmat text with floated banner |
-| `#articles` | Full article list |
-| `#location` | Founder location and contact |
-| `#<article-id>` | One article (`award`, `book`, `dua`, `hadees`, `umrah`, `madinah`) |
+| Hash              | Content                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| `#home` (default) | Intro, founder card, three section cards, featured articles        |
+| `#founder`        | Full profile, links, conference videos                             |
+| `#tariqat`        | TaqwaTalks video series                                            |
+| `#shariat`        | Shariat text with floated banner                                   |
+| `#khidmat`        | Khidmat text with floated banner                                   |
+| `#articles`       | Full article list                                                  |
+| `#location`       | Founder location and contact                                       |
+| `#<article-id>`   | One article (`award`, `book`, `dua`, `hadees`, `umrah`, `madinah`) |
 
 Flow:
 
@@ -75,12 +75,12 @@ A.sort((x,y) => O.indexOf(x.id) - O.indexOf(y.id));
 
 - `O` sets article importance. The list view follows this order. Home shows the first three entries as Featured articles.
 - `list(n)` returns the first `n` articles as link rows.
-- `vid(id, title)` returns a titled YouTube embed plus a "Watch on YouTube" link.
+- `vid(id, title)` returns a titled YouTube embed. The player carries its own "Watch on YouTube" control.
 - `IMG` is the `tsk.jpg` banner tag. `onerror="this.remove()"` hides the banner when the file is missing.
 
 ### Add an article
 
-1. Append `{id:"new-id", t:"Title", h:\`<p>Body</p>\`}` to `A`.
+1. Append `{id:"new-id", t:"Title", h:\`<p>Body</p>\`}`to`A`.
 2. Add `"new-id"` to `O` at the wanted position. Entries missing from `O` sort to the front, so always list them.
 3. Redeploy.
 
@@ -89,15 +89,22 @@ A.sort((x,y) => O.indexOf(x.id) - O.indexOf(y.id));
 ### Design tokens
 
 ```css
-:root{ --bg:#E6F8D1; --s:#D6EBC3; --a:#D6EBC3; --t:#232820; --m:#3f4d33; color-scheme:light; }
+:root {
+  --bg: #e6f8d1;
+  --s: #d6ebc3;
+  --a: #d6ebc3;
+  --t: #232820;
+  --m: #3f4d33;
+  color-scheme: light;
+}
 ```
 
-| Token | Use |
-|---|---|
-| `--bg` | Page background, hover fill on tinted surfaces |
+| Token        | Use                                                           |
+| ------------ | ------------------------------------------------------------- |
+| `--bg`       | Page background, hover fill on tinted surfaces                |
 | `--s`, `--a` | Header, bar, footer, cards, hover fill on the page background |
-| `--t` | Body text |
-| `--m` | Muted text |
+| `--t`        | Body text                                                     |
+| `--m`        | Muted text                                                    |
 
 The palette is two greens plus a dark text color. The theme is light only. `color-scheme: light` stops browsers from forcing a dark rendering.
 
@@ -123,10 +130,10 @@ One breakpoint: `46rem`. Desktop rules apply above. Mobile rules sit in `@media 
 
 `#bar` uses `position: sticky` with `top: env(safe-area-inset-top)` and `z-index: 20`. Padding is equal above and below. `body::before` is a fixed strip in the bar color that covers the device safe area on notched phones.
 
-| Screen | Behavior |
-|---|---|
-| Desktop | Title and subtitle scroll away. The centered nav stays pinned. |
-| Mobile | Title row (title left, menu button right) stays pinned. The subtitle scrolls under it. |
+| Screen  | Behavior                                                                               |
+| ------- | -------------------------------------------------------------------------------------- |
+| Desktop | Title and subtitle scroll away. The centered nav stays pinned.                         |
+| Mobile  | Title row (title left, menu button right) stays pinned. The subtitle scrolls under it. |
 
 Mobile reordering:
 
@@ -143,12 +150,12 @@ Mobile reordering:
 
 ## 7. JavaScript behavior
 
-| Function or handler | Role |
-|---|---|
-| `render()` | Routing and DOM update |
-| `sc()` | On scroll: toggles `#up` visibility (scrollY above 300) and the `stuck` shadow on `#bar` |
-| `#mb` click | Toggles `nav.open` and updates `aria-expanded` |
-| `#up` click | `scrollTo({top:0, behavior:"smooth"})` |
+| Function or handler | Role                                                                                     |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| `render()`          | Routing and DOM update                                                                   |
+| `sc()`              | On scroll: toggles `#up` visibility (scrollY above 300) and the `stuck` shadow on `#bar` |
+| `#mb` click         | Toggles `nav.open` and updates `aria-expanded`                                           |
+| `#up` click         | `scrollTo({top:0, behavior:"smooth"})`                                                   |
 
 `stuck` is true when `#bar` touches the viewport top and `scrollY` is above 0.
 
@@ -156,15 +163,14 @@ Mobile reordering:
 
 - Source: `https://www.youtube-nocookie.com/embed/<id>`
 - Attributes: `loading="lazy"`, `allowfullscreen`, `referrerpolicy="strict-origin-when-cross-origin"`
-- A plain YouTube link sits under each player.
 
-**Error 153.** YouTube shows this when the host page sends no referrer. Opening the page from `file:///` causes it. Serve the site over `https` and the players load. If the error persists on the host, check for a `Referrer-Policy: no-referrer` header or a restrictive Content Security Policy. Replace the embed with the link as a fallback.
+**Error 153.** YouTube shows this when the host page sends no referrer. Opening the page from `file:///` causes it. Serve the site over `https` and the players load. If the error persists on the host, check for a `Referrer-Policy: no-referrer` header or a restrictive Content Security Policy. If embeds stay blocked, replace the iframe with a plain link.
 
 Videos in use:
 
-| View | IDs |
-|---|---|
-| Tariqat | `5q61f7Bk3R4`, `SObPCXfLz6Y`, `FRoB6064fZ8` |
+| View                   | IDs                                                                                    |
+| ---------------------- | -------------------------------------------------------------------------------------- |
+| Tariqat                | `5q61f7Bk3R4`, `SObPCXfLz6Y`, `FRoB6064fZ8`                                            |
 | Founder (newest first) | `v3lbM0vnv8U` (2020), `Ns1e6iOGNBo` (2019), `M5AkrvKUikg` (2018), `jwlCad44-iE` (2016) |
 
 ## 9. Responsive and device support
@@ -201,23 +207,23 @@ No `vercel.json` is required. Hash routes never reach the server, so no rewrites
 
 ## 13. Known limitations and next steps
 
-| Item | Detail |
-|---|---|
-| Missing content | Biographies (Shaikh Abdul Qadir Jilani, Syed Abdul Bari Shah), Ramadan and Laylatul Qadr articles, prayer mistakes, Globe post, 2007 and 2008 travel schedules, Yusra Noor, Scandinavia visit |
-| SEO | Hash routes share one URL for crawlers. Add `<meta name="description">`, Open Graph tags and a `sitemap.xml`. Move to real pages if search traffic matters. |
-| Focus styles | Add `:focus-visible` outlines to links and buttons |
-| Login and webmail | Removed. A static site has no backend for authentication |
-| Privacy | Phone numbers and an email address appear in public text as written. Review them before launch |
-| Font fallback | Google Sans availability depends on Google Fonts. The stack falls back to `system-ui` |
-| Archive growth | Past about 30 articles, move the article data into a JSON file and fetch it at load |
+| Item              | Detail                                                                                                                                                                                        |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Missing content   | Biographies (Shaikh Abdul Qadir Jilani, Syed Abdul Bari Shah), Ramadan and Laylatul Qadr articles, prayer mistakes, Globe post, 2007 and 2008 travel schedules, Yusra Noor, Scandinavia visit |
+| SEO               | Hash routes share one URL for crawlers. Add `<meta name="description">`, Open Graph tags and a `sitemap.xml`. Move to real pages if search traffic matters.                                   |
+| Focus styles      | Add `:focus-visible` outlines to links and buttons                                                                                                                                            |
+| Login and webmail | Removed. A static site has no backend for authentication                                                                                                                                      |
+| Privacy           | Phone numbers and an email address appear in public text as written. Review them before launch                                                                                                |
+| Font fallback     | Google Sans availability depends on Google Fonts. The stack falls back to `system-ui`                                                                                                         |
+| Archive growth    | Past about 30 articles, move the article data into a JSON file and fetch it at load                                                                                                           |
 
 ## 14. Change log
 
-| Area | State |
-|---|---|
-| Palette | `#E6F8D1`, `#D6EBC3`, dark text |
-| Theme | Light only |
-| Font | Google Sans |
-| Navigation | Sticky bar, hamburger menu on mobile |
-| Videos | Inline embeds with link fallback |
-| Media | Founder photo slot, banner on Shariat and Khidmat |
+| Area       | State                                             |
+| ---------- | ------------------------------------------------- |
+| Palette    | `#E6F8D1`, `#D6EBC3`, dark text                   |
+| Theme      | Light only                                        |
+| Font       | Google Sans                                       |
+| Navigation | Sticky bar, hamburger menu on mobile              |
+| Videos     | Inline embeds, no extra link below the player     |
+| Media      | Founder photo slot, banner on Shariat and Khidmat |
