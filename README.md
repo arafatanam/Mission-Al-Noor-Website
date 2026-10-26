@@ -19,6 +19,7 @@ A static, single-file website. No build step, no framework, no backend. One `ind
 ```
 /
 ├── index.html     the whole site
+├── favicon.svg    browser tab icon, linked in <head>
 ├── pp.jpg         founder photo (optional, hidden if missing)
 ├── tsk.jpg        Shariat and Khidmat banner (optional, hidden if missing)
 ├── cv.pdf         founder CV, linked from the Founder view
@@ -26,6 +27,8 @@ A static, single-file website. No build step, no framework, no backend. One `ind
 ```
 
 Rename the local file to `index.html` before deploying. Keep all assets in the same folder. Paths are relative.
+
+The `<head>` links the tab icon with `<link rel="icon" type="image/svg+xml" href="favicon.svg" />`. Browsers load the icon from the same folder.
 
 ## 3. Page anatomy
 
@@ -191,16 +194,16 @@ Videos in use:
 
 ## 11. Deployment on Vercel
 
-1. Put `index.html`, `pp.jpg`, `tsk.jpg` and `cv.pdf` in one folder.
+1. Put `index.html`, `favicon.svg`, `pp.jpg`, `tsk.jpg` and `cv.pdf` in one folder.
 2. Push the folder to a Git repository or run `vercel` in the folder.
 3. Pick the "Other" framework preset. Leave build command and output directory empty.
-4. Test the three video players and the founder photo on the live URL.
+4. Test the three video players, the founder photo and the tab icon on the live URL.
 
 No `vercel.json` is required. Hash routes never reach the server, so no rewrites are needed.
 
 ## 12. Performance
 
-- Single request for HTML, two for font CSS, plus the font files.
+- One request for HTML, two for font CSS, one for `favicon.svg`, plus the font files.
 - No JavaScript libraries. Script weight is under 3 KB of logic plus the content strings.
 - Video iframes load lazily.
 - Images are optional. Compress `pp.jpg` and `tsk.jpg` to under 300 KB each. Prefer WebP or optimized JPEG.
@@ -215,6 +218,7 @@ No `vercel.json` is required. Hash routes never reach the server, so no rewrites
 | Login and webmail | Removed. A static site has no backend for authentication                                                                                                                                      |
 | Privacy           | Phone numbers and an email address appear in public text as written. Review them before launch                                                                                                |
 | Font fallback     | Google Sans availability depends on Google Fonts. The stack falls back to `system-ui`                                                                                                         |
+| Favicon           | SVG only. Some browsers and iOS home screens need a PNG or ICO fallback and an `apple-touch-icon`                                                                                             |
 | Archive growth    | Past about 30 articles, move the article data into a JSON file and fetch it at load                                                                                                           |
 
 ## 14. Change log
@@ -227,3 +231,4 @@ No `vercel.json` is required. Hash routes never reach the server, so no rewrites
 | Navigation | Sticky bar, hamburger menu on mobile              |
 | Videos     | Inline embeds, no extra link below the player     |
 | Media      | Founder photo slot, banner on Shariat and Khidmat |
+| Favicon    | `favicon.svg` linked in `<head>`                  |
