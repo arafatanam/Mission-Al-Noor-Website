@@ -37,16 +37,19 @@
         padding-top: env(safe-area-inset-top, 0px);
         padding-bottom: env(safe-area-inset-bottom, 0px);
       }
+
       *,
       *::before,
       *::after {
         box-sizing: inherit;
       }
+
       html {
         scroll-padding-top: 5rem;
         scrollbar-gutter: stable;
         scroll-behavior: smooth;
       }
+
       body {
         margin: 0;
         min-height: 100%;
@@ -60,6 +63,7 @@
           sans-serif;
         overflow-x: hidden;
       }
+
       body::before {
         content: "";
         position: fixed;
@@ -71,6 +75,7 @@
           transparent 70%
         );
       }
+
       h1,
       h2,
       h3,
@@ -80,37 +85,45 @@
         line-height: 1.08;
         letter-spacing: -0.01em;
       }
+
       h1 {
         font-size: clamp(2.3rem, 7vw, 4.2rem);
         margin: 0 0 1.2rem;
       }
+
       h2 {
         font-size: clamp(1.6rem, 4vw, 2.3rem);
         margin: 2.6rem 0 0.8rem;
       }
+
       h3 {
         font-size: 1.5rem;
         margin: 0 0 0.4rem;
       }
+
       p {
         max-width: none;
         overflow-wrap: anywhere;
       }
+
       main > p,
       article p {
         text-align: justify;
         hyphens: auto;
       }
+
       a {
         color: inherit;
         text-underline-offset: 4px;
         text-decoration-thickness: 1px;
       }
+
       :focus-visible {
         outline: 2px solid var(--d);
         outline-offset: 3px;
         border-radius: 0.4rem;
       }
+
       #pg {
         position: fixed;
         top: 0;
@@ -120,6 +133,7 @@
         background: var(--d);
         z-index: 60;
       }
+
       #nav {
         position: fixed;
         top: calc(0.8rem + env(safe-area-inset-top, 0px));
@@ -139,9 +153,11 @@
         gap: 1rem;
         transition: box-shadow 0.3s;
       }
+
       #nav.st {
         box-shadow: 0 8px 30px rgba(47, 61, 37, 0.14);
       }
+
       .br {
         font:
           600 1.45rem/1 "Cormorant Garamond",
@@ -149,10 +165,12 @@
         text-decoration: none;
         white-space: nowrap;
       }
+
       #lk {
         display: flex;
         gap: 0.1rem;
       }
+
       #lk a {
         padding: 0.4rem 0.7rem;
         border-radius: 999px;
@@ -163,13 +181,16 @@
           background 0.2s,
           color 0.2s;
       }
+
       #lk a:hover {
         background: var(--s);
       }
+
       #lk a.on {
         background: var(--d);
         color: var(--l);
       }
+
       #mb {
         display: none;
         border: 0;
@@ -182,10 +203,12 @@
         padding: 0.5rem 1.1rem;
         cursor: pointer;
       }
+
       @media (max-width: 61.99rem) {
         #mb {
           display: block;
         }
+
         #lk {
           display: none;
           position: absolute;
@@ -198,14 +221,17 @@
           padding: 0.6rem;
           box-shadow: 0 12px 30px rgba(47, 61, 37, 0.16);
         }
+
         #lk.open {
           display: flex;
         }
+
         #lk a {
           text-align: center;
           padding: 0.7rem;
         }
       }
+
       main {
         flex: 1;
         width: 100%;
@@ -213,23 +239,28 @@
         margin: 0 auto;
         padding: 7rem clamp(1rem, 4vw, 2rem) 4rem;
       }
+
       ::view-transition-old(root) {
         animation: 0.25s ease both fo;
       }
+
       ::view-transition-new(root) {
         animation: 0.45s ease both fi;
       }
+
       @keyframes fo {
         to {
           opacity: 0;
         }
       }
+
       @keyframes fi {
         from {
           opacity: 0;
           transform: translateY(10px);
         }
       }
+
       .hero {
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
@@ -238,6 +269,7 @@
         min-height: min(36rem, 78vh);
         padding: 1rem 0 3rem;
       }
+
       .bis {
         font:
           400 clamp(1.5rem, 3.5vw, 2.1rem)/1.6 Amiri,
@@ -245,11 +277,13 @@
         margin: 0;
         color: var(--m);
       }
+
       .lead {
         font-size: 1.15rem;
         color: var(--m);
         margin: 0 0 1.5rem;
       }
+
       .arch {
         position: relative;
         justify-self: center;
@@ -269,6 +303,7 @@
           0 30px 80px rgba(47, 61, 37, 0.25);
         animation: rise 1.2s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
       }
+
       .arch img {
         position: absolute;
         inset: 0;
@@ -278,37 +313,45 @@
         object-position: center top;
         animation: zm 2.6s ease both;
       }
+
       .arch img + span {
         display: none;
       }
+
       @keyframes rise {
         from {
           opacity: 0;
           translate: 0 2.5rem;
         }
       }
+
       @keyframes zm {
         from {
           scale: 1.18;
         }
       }
+
       .hero h1 {
         font-size: clamp(3rem, 9vw, 6.4rem);
         margin: 0.2rem 0 1rem;
         max-width: 9ch;
       }
+
       .hero h1 span {
         display: inline-block;
         opacity: 0;
         transform: translateY(40%) rotate(2deg);
         animation: up 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
       }
+
       .hero h1 span:nth-child(2) {
         animation-delay: 0.15s;
       }
+
       .hero h1 span:nth-child(3) {
         animation-delay: 0.3s;
       }
+
       @keyframes up {
         to {
           opacity: 1;
@@ -323,6 +366,7 @@
         padding: 0;
         list-style: none;
       }
+
       .tri a {
         display: inline-flex;
         align-items: baseline;
@@ -338,16 +382,19 @@
           background 0.25s,
           padding 0.25s;
       }
+
       .tri a:hover {
         background: var(--s);
         padding-left: 1.3rem;
       }
+
       .tri small {
         font:
           400 0.95rem "Google Sans",
           sans-serif;
         color: var(--m);
       }
+
       .stats {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
@@ -357,20 +404,24 @@
         overflow: hidden;
         margin: 1rem 0 3rem;
       }
+
       .stats div {
         background: var(--bg);
         padding: 1.4rem 1.2rem;
       }
+
       .stats b {
         display: block;
         font:
           600 clamp(2.2rem, 5vw, 3.2rem)/1 "Cormorant Garamond",
           serif;
       }
+
       .stats span {
         color: var(--m);
         font-size: 0.9rem;
       }
+
       .founder {
         display: grid;
         grid-template-columns: minmax(0, 13rem) 1fr;
@@ -380,6 +431,7 @@
         border-radius: 2rem;
         padding: 1.4rem;
       }
+
       .ph {
         position: relative;
         aspect-ratio: 4/5;
@@ -392,6 +444,7 @@
           serif;
         overflow: hidden;
       }
+
       .ph img {
         position: absolute;
         inset: 0;
@@ -400,9 +453,11 @@
         object-fit: cover;
         object-position: center top;
       }
+
       .ph img + span {
         display: none;
       }
+
       .btn {
         display: inline-block;
         background: var(--d);
@@ -415,16 +470,19 @@
           transform 0.25s,
           background 0.25s;
       }
+
       .btn:hover {
         background: var(--t);
         transform: translateY(-2px);
       }
+
       .panels {
         display: grid;
         gap: 1rem;
         grid-template-columns: repeat(3, 1fr);
         margin: 3rem 0;
       }
+
       .pn {
         position: relative;
         overflow: hidden;
@@ -440,6 +498,7 @@
           background 0.35s,
           transform 0.35s;
       }
+
       .pn::before {
         content: "";
         position: absolute;
@@ -454,6 +513,7 @@
           rotate 0.8s,
           scale 0.8s;
       }
+
       .pn::after {
         content: "";
         position: absolute;
@@ -467,48 +527,60 @@
           rotate 0.8s,
           scale 0.8s;
       }
+
       .pn:hover {
         background: var(--l);
         transform: translateY(-4px);
       }
+
       .pn:hover::before {
         rotate: 112deg;
         scale: 1.25;
       }
+
       .pn:hover::after {
         rotate: 90deg;
         scale: 1.25;
       }
+
       .pn p {
         margin: 0;
         color: var(--m);
       }
+
       @media (max-width: 45.99rem) {
         .panels {
           grid-template-columns: 1fr;
         }
+
         .pn {
           min-height: 10rem;
         }
+
         .founder {
           grid-template-columns: 1fr;
         }
+
         .ph {
           width: 100%;
           max-width: 12rem;
           justify-self: center;
         }
+
         .hero {
           grid-template-columns: 1fr;
         }
+
         .arch {
           width: min(100%, 19rem);
         }
+
         .tl li {
           grid-template-columns: 1fr;
           gap: 0.2rem;
         }
       }
+
       .list a {
         display: flex;
         justify-content: space-between;
@@ -524,10 +596,12 @@
           padding 0.3s,
           background 0.3s;
       }
+
       .list a:hover {
         padding-left: 1.2rem;
         background: var(--s);
       }
+
       .list small {
         font:
           400 0.85rem "Google Sans",
@@ -535,24 +609,29 @@
         color: var(--m);
         white-space: nowrap;
       }
+
       .chips {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
         margin: 1rem 0;
       }
+
       .chips span {
         background: var(--s);
         border-radius: 999px;
         padding: 0.25rem 0.9rem;
         font-size: 0.9rem;
       }
+
       .v {
         margin: 2rem 0;
       }
+
       .v h3 {
         font-size: 1.25rem;
       }
+
       .vid {
         aspect-ratio: 16/9;
         width: 100%;
@@ -561,12 +640,14 @@
         background: var(--s);
         display: block;
       }
+
       .banner {
         float: left;
         width: min(16rem, 40%);
         border-radius: 1.4rem;
         margin: 0.3rem 1.6rem 1rem 0;
       }
+
       .ur {
         direction: rtl;
         text-align: right;
@@ -576,9 +657,11 @@
         border-radius: 1.4rem;
         padding: 1.2rem 1.5rem;
       }
+
       .muted {
         color: var(--m);
       }
+
       .crumb {
         display: inline-block;
         margin-bottom: 1.5rem;
@@ -587,43 +670,52 @@
         border-radius: 999px;
         text-decoration: none;
       }
+
       .crumb:hover,
       .links a:hover {
         background: var(--s);
       }
+
       article h1 {
         font-size: clamp(2rem, 5vw, 3.2rem);
       }
+
       article p {
         font-size: 1.08rem;
       }
+
       .card {
         background: var(--s);
         border-radius: 1.6rem;
         padding: 1.5rem;
         max-width: 30rem;
       }
+
       .links {
         padding: 0;
         list-style: none;
       }
+
       .links a {
         display: inline-block;
         padding: 0.25rem 0.7rem;
         margin-left: -0.7rem;
         border-radius: 0.6rem;
       }
+
       main::after {
         content: "";
         display: block;
         clear: both;
       }
+
       .tl {
         list-style: none;
         margin: 2.5rem 0;
         padding: 0 0 0 1.6rem;
         border-left: 1px solid var(--m);
       }
+
       .tl li {
         position: relative;
         display: grid;
@@ -636,10 +728,12 @@
           opacity 0.7s,
           translate 0.7s;
       }
+
       .tl li.in {
         opacity: 1;
         translate: 0;
       }
+
       .tl li::before {
         content: "";
         position: absolute;
@@ -650,68 +744,84 @@
         border-radius: 50%;
         background: var(--d);
       }
+
       .tl time {
         font:
           600 2.2rem/1.1 "Cormorant Garamond",
           serif;
       }
+
       .tl h3 {
         margin-top: 0.2rem;
       }
+
       .tl p {
         margin: 0.2rem 0;
       }
+
       figure {
         margin: 1rem 0;
       }
+
       figure img {
         display: block;
         width: 100%;
         border-radius: 1.2rem;
         cursor: zoom-in;
       }
+
       .tl figure {
         max-width: 30rem;
       }
+
       figcaption {
         font-size: 0.85rem;
         color: var(--m);
         margin-top: 0.4rem;
       }
+
       .duo {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
         gap: 1rem;
         margin: 1.5rem 0;
       }
+
       .duo figure {
         margin: 0;
       }
+
       .gal {
         columns: 3 15rem;
         column-gap: 1rem;
         margin: 2rem 0;
       }
+
       .gal figure {
         break-inside: avoid;
         margin: 0 0 1rem;
         overflow: hidden;
         border-radius: 1.2rem;
       }
+
       .gal figure img {
         transition: transform 0.5s;
       }
+
       .gal figure:hover img {
         transform: scale(1.04);
       }
+
       .gal:empty::before {
         content: "No photos yet. Add images to the images folder and they appear here.";
         color: var(--m);
       }
+
       .q {
         margin: 3rem 0;
         text-align: center;
       }
+
       .q p {
         font:
           italic 500 clamp(1.7rem, 4vw, 2.6rem)/1.25 "Cormorant Garamond",
@@ -719,9 +829,11 @@
         max-width: none;
         margin: 0 auto 0.5rem;
       }
+
       .q small {
         color: var(--m);
       }
+
       #lb {
         position: fixed;
         inset: 0;
@@ -734,16 +846,19 @@
         transition: opacity 0.3s;
         padding: 1rem;
       }
+
       #lb.on {
         opacity: 1;
         pointer-events: auto;
       }
+
       #lb img {
         max-width: 100%;
         max-height: 100%;
         border-radius: 1rem;
         cursor: zoom-out;
       }
+
       .pn i {
         position: absolute;
         top: 1rem;
@@ -755,15 +870,18 @@
         color: var(--m);
         transition: transform 0.6s;
       }
+
       .pn:hover i {
         transform: scale(1.15);
       }
+
       footer {
         background: var(--s);
         padding: 2rem 1rem;
         text-align: center;
         font-weight: 500;
       }
+
       footer b {
         display: block;
         font:
@@ -771,6 +889,7 @@
           serif;
         margin-bottom: 0.2rem;
       }
+
       #up {
         position: fixed;
         right: max(1rem, env(safe-area-inset-right, 0px));
@@ -790,11 +909,13 @@
           opacity 0.3s,
           translate 0.3s;
       }
+
       #up.on {
         opacity: 1;
         translate: 0;
         pointer-events: auto;
       }
+
       @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
@@ -802,20 +923,24 @@
           animation: none !important;
           transition: none !important;
         }
+
         .tl li {
           opacity: 1;
           translate: 0;
         }
+
         .hero h1 span {
           opacity: 1;
           transform: none;
         }
+
         html {
           scroll-behavior: auto;
         }
       }
     </style>
   </head>
+
   <body>
     <div id="pg"></div>
     <nav id="nav">
