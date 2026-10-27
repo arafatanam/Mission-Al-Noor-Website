@@ -262,12 +262,129 @@
       }
 
       .hero {
+        position: relative;
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 2rem;
-        align-items: center;
+        grid-template-columns: 1fr minmax(0, 30rem) 1fr;
+        gap: 1rem;
+        align-items: start;
+        text-align: center;
         min-height: min(36rem, 78vh);
         padding: 1rem 0 3rem;
+      }
+
+      .hc {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .sky {
+        position: absolute;
+        left: 50%;
+        bottom: 0.5rem;
+        translate: -50% 0;
+        width: min(46rem, 100%);
+        z-index: 0;
+        fill: none;
+        stroke: var(--m);
+        stroke-width: 1.2;
+        stroke-linejoin: round;
+        opacity: 0.26;
+        pointer-events: none;
+      }
+
+      /* Polaroid frame: white card, deep bottom margin, tilt from --r, film grain on top */
+      .pol {
+        position: relative;
+        margin: 0;
+        background: #fffdf7;
+        padding: 0.6rem 0.6rem 2.6rem;
+        border-radius: 0.2rem;
+        box-shadow:
+          0 1px 2px rgba(35, 40, 32, 0.12),
+          0 18px 40px rgba(47, 61, 37, 0.22);
+        rotate: var(--r, -2deg);
+        transition:
+          rotate 0.5s,
+          translate 0.5s,
+          box-shadow 0.5s;
+      }
+
+      .pol:has(figcaption) {
+        padding-bottom: 0.9rem;
+      }
+
+      .pol::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        opacity: 0.22;
+        mix-blend-mode: multiply;
+      }
+
+      .pol img {
+        display: block;
+        width: 100%;
+        border-radius: 0.1rem;
+        filter: contrast(1.06) saturate(0.88) sepia(0.08);
+      }
+
+      .pol figcaption {
+        margin: 0.55rem 0.2rem 0;
+        font:
+          italic 500 1.05rem/1.3 "Cormorant Garamond",
+          serif;
+        color: var(--m);
+        text-align: center;
+      }
+
+      .pol:hover {
+        rotate: 0deg;
+        translate: 0 -4px;
+        box-shadow:
+          0 1px 2px rgba(35, 40, 32, 0.12),
+          0 26px 50px rgba(47, 61, 37, 0.28);
+      }
+
+      .hp1,
+      .hp2 {
+        z-index: 1;
+        animation: rise 1.2s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+      }
+
+      .hp1 {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        width: min(100%, 11rem);
+        margin: -0.5rem 0 0 -1.5rem;
+        --r: -7deg;
+      }
+
+      .hp2 {
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: end;
+        width: min(100%, 15rem);
+        margin: 1.5rem -1.5rem 0 0;
+        --r: 5deg;
+        animation-delay: 0.35s;
+      }
+
+      .hp1 img,
+      .hp2 .ph {
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .hp2 .ph {
+        border-radius: 0.1rem;
       }
 
       .bis {
@@ -284,38 +401,8 @@
         margin: 0 0 1.5rem;
       }
 
-      .arch {
-        position: relative;
-        justify-self: center;
-        width: min(100%, 24rem);
-        aspect-ratio: 3/4;
-        border-radius: 999px 999px 1.6rem 1.6rem;
-        overflow: hidden;
-        background: var(--s);
-        display: grid;
-        place-items: center;
-        font:
-          600 3rem "Cormorant Garamond",
-          serif;
-        box-shadow:
-          0 0 0 0.6rem var(--bg),
-          0 0 0 calc(0.6rem + 1px) var(--m),
-          0 30px 80px rgba(47, 61, 37, 0.25);
-        animation: rise 1.2s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-      }
-
-      .arch img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
+      .hp2 img {
         animation: zm 2.6s ease both;
-      }
-
-      .arch img + span {
-        display: none;
       }
 
       @keyframes rise {
@@ -333,7 +420,7 @@
 
       .hero h1 {
         font-size: clamp(3rem, 9vw, 6.4rem);
-        margin: 0.2rem 0 1rem;
+        margin: 0.2rem auto 1rem;
         max-width: 9ch;
       }
 
@@ -393,6 +480,126 @@
           400 0.95rem "Google Sans",
           sans-serif;
         color: var(--m);
+      }
+
+      .hero .tri {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .hero .tri a {
+        margin: 0;
+        padding: 0.3rem 1rem;
+        border: 1px solid rgba(63, 77, 51, 0.35);
+        background: rgba(243, 252, 232, 0.55);
+        font-size: 1.3rem;
+        transition:
+          background 0.25s,
+          transform 0.25s;
+      }
+
+      .hero .tri a:hover {
+        padding-left: 1rem;
+        background: var(--l);
+        transform: translateY(-2px);
+      }
+
+      .hero .lead {
+        margin-inline: auto;
+        max-width: 26rem;
+      }
+
+      .tag {
+        display: inline-block;
+        background: var(--d);
+        color: var(--bg);
+        padding: 0.25rem 0.9rem 0.35rem;
+        border-radius: 0.35rem;
+        font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+        rotate: -1.5deg;
+        box-shadow: 0 6px 16px rgba(47, 61, 37, 0.18);
+      }
+
+      .band {
+        position: relative;
+        margin: 3rem calc(50% - 50vw);
+        padding: 4rem clamp(1rem, 4vw, 2rem) 4.5rem;
+        text-align: center;
+        background: linear-gradient(
+          180deg,
+          var(--bg),
+          var(--s) 25%,
+          var(--s) 75%,
+          var(--bg)
+        );
+      }
+
+      .band::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            rgba(47, 61, 37, 0.16) 1px,
+            transparent 1.4px
+          )
+          0 0 / 14px 14px;
+        mask-image: linear-gradient(
+          180deg,
+          transparent,
+          #000 30%,
+          #000 70%,
+          transparent
+        );
+        pointer-events: none;
+      }
+
+      .band > * {
+        position: relative;
+      }
+
+      .band .q {
+        margin: 1.4rem auto 0;
+        max-width: 46rem;
+      }
+
+      .stack {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 42rem;
+        margin: 2.5rem auto 2.2rem;
+      }
+
+      .stack .pol {
+        width: min(15rem, 36%);
+        margin: 0 -1.2rem;
+      }
+
+      .stack .pol img {
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        object-position: center top;
+        cursor: zoom-in;
+      }
+
+      .stack .pol:nth-child(1) {
+        --r: -6deg;
+      }
+
+      .stack .pol:nth-child(2) {
+        --r: 3deg;
+        z-index: 2;
+        margin-top: 2.5rem;
+      }
+
+      .stack .pol:nth-child(3) {
+        --r: 7deg;
+      }
+
+      .stack .pol:hover {
+        z-index: 3;
       }
 
       .stats {
@@ -456,6 +663,15 @@
 
       .ph img + span {
         display: none;
+      }
+
+      .pol .ph {
+        border-radius: 0.1rem;
+      }
+
+      .founder > .pol {
+        --r: -3deg;
+        margin: 0.4rem;
       }
 
       .btn {
@@ -561,18 +777,51 @@
           grid-template-columns: 1fr;
         }
 
-        .ph {
+        .founder > .pol {
           width: 100%;
           max-width: 12rem;
           justify-self: center;
         }
 
         .hero {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr 1fr;
+          min-height: 0;
+          row-gap: 1.5rem;
         }
 
-        .arch {
-          width: min(100%, 19rem);
+        .hc {
+          grid-column: 1 / -1;
+          grid-row: 2;
+        }
+
+        .hp1 {
+          grid-column: 1;
+          justify-self: end;
+          width: min(100%, 9rem);
+          margin: 1.6rem -1.2rem 0 0;
+          z-index: 2;
+        }
+
+        .hp2 {
+          grid-column: 2;
+          justify-self: start;
+          width: min(100%, 11.5rem);
+          margin: 0;
+        }
+
+        .sky {
+          bottom: auto;
+          top: 2.5rem;
+          opacity: 0.2;
+        }
+
+        .stack .pol {
+          margin: 0 -0.8rem;
+        }
+
+        footer .fi {
+          flex-direction: column;
+          text-align: center;
         }
 
         .tl li {
@@ -644,8 +893,14 @@
       .banner {
         float: left;
         width: min(16rem, 40%);
-        border-radius: 1.4rem;
-        margin: 0.3rem 1.6rem 1rem 0;
+        background: #fffdf7;
+        padding: 0.5rem 0.5rem 1.9rem;
+        border-radius: 0.2rem;
+        box-shadow:
+          0 1px 2px rgba(35, 40, 32, 0.12),
+          0 16px 34px rgba(47, 61, 37, 0.2);
+        rotate: -2.5deg;
+        margin: 0.6rem 1.8rem 1rem 0.3rem;
       }
 
       .ur {
@@ -771,7 +1026,16 @@
       }
 
       .tl figure {
-        max-width: 30rem;
+        max-width: 24rem;
+        margin: 1.4rem 0 0.6rem;
+      }
+
+      .tl li:nth-child(odd) figure {
+        --r: -2deg;
+      }
+
+      .tl li:nth-child(even) figure {
+        --r: 2.2deg;
       }
 
       figcaption {
@@ -788,28 +1052,33 @@
       }
 
       .duo figure {
-        margin: 0;
+        margin: 0.5rem;
+        max-width: 30rem;
+        --r: -1.5deg;
       }
 
       .gal {
         columns: 3 15rem;
-        column-gap: 1rem;
+        column-gap: 1.6rem;
         margin: 2rem 0;
+        padding: 0 0.4rem;
       }
 
       .gal figure {
         break-inside: avoid;
-        margin: 0 0 1rem;
-        overflow: hidden;
-        border-radius: 1.2rem;
+        margin: 0 0 1.8rem;
       }
 
-      .gal figure img {
-        transition: transform 0.5s;
+      .gal figure:nth-child(3n + 1) {
+        --r: -2.5deg;
       }
 
-      .gal figure:hover img {
-        transform: scale(1.04);
+      .gal figure:nth-child(3n + 2) {
+        --r: 1.8deg;
+      }
+
+      .gal figure:nth-child(3n) {
+        --r: -0.8deg;
       }
 
       .gal:empty::before {
@@ -877,9 +1146,17 @@
 
       footer {
         background: var(--s);
-        padding: 2rem 1rem;
-        text-align: center;
+        padding: 2rem clamp(1rem, 4vw, 2rem);
         font-weight: 500;
+      }
+
+      footer .fi {
+        max-width: 58rem;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem 2rem;
       }
 
       footer b {
@@ -888,6 +1165,30 @@
           600 1.5rem "Cormorant Garamond",
           serif;
         margin-bottom: 0.2rem;
+      }
+
+      footer .muted {
+        font-weight: 400;
+        font-size: 0.9rem;
+      }
+
+      footer .fl {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2rem;
+      }
+
+      footer .fl a {
+        padding: 0.3rem 0.8rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.92rem;
+        transition: background 0.2s;
+      }
+
+      footer .fl a:hover {
+        background: var(--l);
       }
 
       #up {
@@ -950,8 +1251,19 @@
     </nav>
     <main id="main"></main>
     <footer>
-      <b>Mission Al Noor International</b
-      ><a href="mailto:info@mission-alnoor.org">info@mission-alnoor.org</a>
+      <div class="fi">
+        <div>
+          <b>Mission Al Noor International</b
+          ><span class="muted"
+            >Tariqat our way. Shariat our objectives. Khidmat our mission.</span
+          >
+        </div>
+        <div class="fl">
+          <a href="#articles">Articles</a><a href="#gallery">Gallery</a
+          ><a href="#location">Location</a
+          ><a href="mailto:info@mission-alnoor.org">info@mission-alnoor.org</a>
+        </div>
+      </div>
     </footer>
     <div id="lb" aria-hidden="true"></div>
     <button id="up" aria-label="Scroll to top">↑</button>
@@ -1032,7 +1344,7 @@
       var IMG =
         '<img class="banner" src="./images/tsk.jpg" alt="Tariqat, Shariat and Khidmat" onerror="this.remove()">';
       var fig = (f, a, c) =>
-        '<figure><img src="images/' +
+        '<figure class="pol"><img src="images/' +
         f +
         '" alt="' +
         a +
@@ -1097,13 +1409,13 @@
         { threshold: 0.15 },
       );
       var P = {
-        home: () => `<section class="hero"><div><p class="bis" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p><h1 class="serif"><span>Mission</span> <span>Al Noor</span></h1><p class="lead">Walking the path of light. A spiritual family devoted to remembrance, knowledge and service.</p><ul class="tri"><li><a href="#tariqat">Tariqat<small>our way</small></a></li><li><a href="#shariat">Shariat<small>our objectives</small></a></li><li><a href="#khidmat">Khidmat<small>our mission</small></a></li></ul></div><div class="arch"><img src="images/founder.jpg" alt="Prof. Dr. Mohammed Nurul Alam" onerror="this.remove()"><span>MNA</span></div></section>
+        home: () => `<section class="hero"><svg class="sky" viewBox="0 0 600 300" aria-hidden="true"><path d="M10 292H590M72 292V110M92 292V110M66 150H98M68 110H96M72 110L82 72L92 110M82 72V58M508 292V110M528 292V110M502 150H534M504 110H532M508 110L518 72L528 110M518 72V58M120 292V215H185M124 215C124 190 152 186 152 168C152 186 181 190 181 215M480 292V215H415M476 215C476 190 448 186 448 168C448 186 419 190 419 215M185 292V175H415V292M215 175C210 115 270 100 300 60C330 100 390 115 385 175M300 60V42M304 22a8 8 0 1 0 0 14a6 6 0 1 1 0-14M275 292V240Q275 212 300 202Q325 212 325 240V292M212 262V232Q212 218 224 212Q236 218 236 232V262ZM364 262V232Q364 218 376 212Q388 218 388 232V262ZM143 262V240Q143 230 152 226Q161 230 161 240V262ZM439 262V240Q439 230 448 226Q457 230 457 240V262Z"/><circle cx="150" cy="58" r="1.6"/><circle cx="455" cy="44" r="1.6"/><circle cx="228" cy="28" r="1.6"/><circle cx="395" cy="86" r="1.6"/></svg><figure class="pol hp1"><img src="images/founder-7.jpg" alt="The founder at a gathering" onerror="this.closest('figure').remove()"></figure><div class="hc"><p class="bis" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p><h1 class="serif"><span>Mission</span> <span>Al Noor</span></h1><p class="lead">Walking the path of light. A spiritual family devoted to remembrance, knowledge and service.</p><ul class="tri"><li><a href="#tariqat">Tariqat<small>our way</small></a></li><li><a href="#shariat">Shariat<small>our objectives</small></a></li><li><a href="#khidmat">Khidmat<small>our mission</small></a></li></ul></div><div class="pol hp2"><div class="ph"><img src="images/founder.jpg" alt="Prof. Dr. Mohammed Nurul Alam" onerror="this.remove()"><span>MNA</span></div></div></section>
 <div class="stats"><div><b data-n="1976">0</b><span>Teaching since</span></div><div><b data-n="42">0</b><span>Countries visited</span></div><div><b data-n="20" data-s="+">0</b><span>Countries of conference talks</span></div><div><b data-n="72" data-s="+">0</b><span>Countries at the 2008 award conference</span></div></div>
-<div class="q"><p>“Allah is the Light of the heavens and the earth.”</p><small>Surah An-Nur, 24:35</small></div><div class="founder"><div class="ph"><img src="images/founder-2.jpg" alt="Prof. Dr. Mohammed Nurul Alam" onerror="this.remove()"><span>MNA</span></div><div><h2 style="margin-top:0">Founder and Patron: Prof. Dr. Mohammed Nurul Alam</h2><p>Professor of Accounting at Yorkville University in Toronto, Canada. Ph.D. in “Small Business Finance by Islamic Banks” from Lund University, Sweden.</p><p>Associated since 1979 with Syed Shaikh Yusuf Hashim Al-Rifa’i, he was granted khilafat in the Rifa’i tariqa to serve the Ummah across the globe.</p><a class="btn" href="#founder">Read the full profile</a></div></div>
+<section class="band"><h2 style="margin:0"><span class="tag">Moments</span></h2><div class="q"><p>“Allah is the Light of the heavens and the earth.”</p><small>Surah An-Nur, 24:35</small></div><div class="stack">${fig("founder-5.jpg", "The founder at a gathering")}${fig("founder-8.jpg", "The founder with the community")}${fig("founder-6.jpg", "The founder on his travels")}</div><a class="btn" href="#gallery">Open the gallery</a></section><div class="founder"><div class="pol"><div class="ph"><img src="images/founder-2.jpg" alt="Prof. Dr. Mohammed Nurul Alam" onerror="this.remove()"><span>MNA</span></div></div><div><h2 style="margin-top:0">Founder and Patron: Prof. Dr. Mohammed Nurul Alam</h2><p>Professor of Accounting at Yorkville University in Toronto, Canada. Ph.D. in “Small Business Finance by Islamic Banks” from Lund University, Sweden.</p><p>Associated since 1979 with Syed Shaikh Yusuf Hashim Al-Rifa’i, he was granted khilafat in the Rifa’i tariqa to serve the Ummah across the globe.</p><a class="btn" href="#founder">Read the full profile</a></div></div>
 <div class="panels"><a class="pn" href="#tariqat"><i lang="ar">ذكر</i><h3>Tariqat</h3><p>Remembrance of Allah through the Nafi Esbaat and the silent zikr of the heart. Watch the TaqwaTalks series.</p></a><a class="pn" href="#shariat"><i lang="ar">علم</i><h3>Shariat</h3><p>Study of the Qur’an, Sunnah and the inner sciences of tasawwuf: ‘ilm, ‘amal and ikhlas.</p></a><a class="pn" href="#khidmat"><i lang="ar">خدمة</i><h3>Khidmat</h3><p>Serving the Ummah across continents with compassion and humility.</p></a></div>
-<h2>Featured articles</h2>${list(3)}<p><a href="#articles">See all articles</a></p>`,
+<h2><span class="tag">Featured articles</span></h2>${list(3)}<p><a href="#articles">See all articles</a></p>`,
         founder: () =>
-          `<h1>Prof. Dr. Mohammed Nurul Alam</h1><p class="muted">Founder and Patron</p><div class="duo">${fig("founder-3.jpg", "Portrait of the founder")}</div><div class="chips"><span>Kenya</span><span>Bangladesh</span><span>Oman</span><span>UAE</span><span>Sweden</span><span>Indonesia</span><span>Canada</span></div><p>Dr. Mohammed Nurul Alam is a Professor of Accounting at Yorkville University in Toronto, Canada. He holds a Ph.D. in “Small Business Finance by Islamic Banks” from Lund University in Sweden. His academic background includes a Bachelor of Commerce with Honours, a Master’s Degree in Accounting, and completion of a Chartered Accounting Course (CACC).</p><p>Dr. Alam’s teaching journey dates back to 1976. He has taught accounting to CPA students in Nairobi, Kenya, and collaborated with the United Nations Development Program (UNDP) as a Lecturer in Accounting and Finance at the Kenya Institute of Administration (KIA), Nairobi. He served as an Assistant Professor in Accounting and as Dean of the Commerce Faculty at Islamic University, Bangladesh.</p><p>He coordinated the Federal Government project “Fresh Start,” funded by the Ontario Trillium Foundation, Canada. The project taught women in the Region of Peel how to start small home-based businesses.</p><p>Dr. Alam worked as an Assistant Professor in Accounting at Sultan Qaboos University in Oman. He held the position of Associate Professor at Canadian University in Dubai, UAE, where he taught Managerial Accounting to MBA students. He was a SIDA (Swedish International Development Cooperation Agency) Research Fellow at Lund University, where he conducted research and taught MBA courses on banking in Southeast Asian nations and international marketing.</p><p>He served as a visiting professor at Trisakti University in West Jakarta, Indonesia, in the Department of Islamic Economics and Finance, where he developed and taught a PhD course on Small Business Finance by Islamic Banks and Networking. He conducted his PhD research by visiting Islamic banks in Kuwait, Saudi Arabia, Sudan, Turkey, Northern Cyprus, Pakistan and Bangladesh.</p><p>He has presented his work on “Small Entrepreneurs Finance by Islamic Banks” at international conferences in over 20 countries and published numerous articles in international journals. His 2009 book “Empowering Small Entrepreneurs by Islamic Banks” is available on Amazon. He awaits publication of his latest book, “Islamic Banking: Financial Practices,” which examines Riba and other financial practices within Islamic banking. His most recent presentation was at the United Nations Headquarters in Geneva, where he discussed the role of Islamic banks in financing small businesses in Kenya.</p><p>Described in one word, he is “wanderlust.” As Shakespeare said, “The world is my oyster.” He has traveled to over 42 countries.</p><h2>Links</h2><ul class="links"><li><a href="https://myyu.ca/faculty/mohammed-alam/">Yorkville University faculty page</a></li><li><a href="https://www.amazon.ca/Empowering-Small-Entrepreneurs-Islamic-Banks/dp/3838312414">Book on Amazon</a></li><li><a href="https://lup.lub.lu.se/search/publication/da34de11-6080-4432-a2cd-fedc6ebd6347">Lund University: Financing of Small and Cottage Industries in Bangladesh by Islamic Banks</a></li><li><a href="cv.pdf">Download complete CV</a></li></ul><h2>Conferences</h2>${vid("v3lbM0vnv8U", "WASD online conference, London, October 18 to 19, 2020: Online Learning the New Normal Post Covid-19")}${vid("Ns1e6iOGNBo", "United Nations Environment Program, London, June 2019: Islamic banking financing to SME (with Nurulayn Binte Noor)")}${vid("M5AkrvKUikg", "United Nations HQ, Geneva, April 11, 2018: Coalescing the energies of SMEs (with his daughter Nurulayn Binte Noor)")}${vid("jwlCad44-iE", "Canary Wharf, London, July 2016: Small entrepreneurs finance by Islamic Banks, an empirical review")}`,
+          `<h1>Prof. Dr. Mohammed Nurul Alam</h1><p class="muted">Founder and Patron</p><div class="duo">${fig("founder-3.jpg", "Portrait of the founder")}</div><div class="chips"><span>Kenya</span><span>Bangladesh</span><span>Oman</span><span>UAE</span><span>Sweden</span><span>Indonesia</span><span>Canada</span></div><p>Dr. Mohammed Nurul Alam is a Professor of Accounting at Yorkville University in Toronto, Canada. He holds a Ph.D. in “Small Business Finance by Islamic Banks” from Lund University in Sweden. His academic background includes a Bachelor of Commerce with Honours, a Master’s Degree in Accounting, and completion of a Chartered Accounting Course (CACC).</p><p>Dr. Alam’s teaching journey dates back to 1976. He has taught accounting to CPA students in Nairobi, Kenya, and collaborated with the United Nations Development Program (UNDP) as a Lecturer in Accounting and Finance at the Kenya Institute of Administration (KIA), Nairobi. He served as an Assistant Professor in Accounting and as Dean of the Commerce Faculty at Islamic University, Bangladesh.</p><p>He coordinated the Federal Government project “Fresh Start,” funded by the Ontario Trillium Foundation, Canada. The project taught women in the Region of Peel how to start small home-based businesses.</p><p>Dr. Alam worked as an Assistant Professor in Accounting at Sultan Qaboos University in Oman. He held the position of Associate Professor at Canadian University in Dubai, UAE, where he taught Managerial Accounting to MBA students. He was a SIDA (Swedish International Development Cooperation Agency) Research Fellow at Lund University, where he conducted research and taught MBA courses on banking in Southeast Asian nations and international marketing.</p><p>He served as a visiting professor at Trisakti University in West Jakarta, Indonesia, in the Department of Islamic Economics and Finance, where he developed and taught a PhD course on Small Business Finance by Islamic Banks and Networking. He conducted his PhD research by visiting Islamic banks in Kuwait, Saudi Arabia, Sudan, Turkey, Northern Cyprus, Pakistan and Bangladesh.</p><p>He has presented his work on “Small Entrepreneurs Finance by Islamic Banks” at international conferences in over 20 countries and published numerous articles in international journals. His 2009 book “Empowering Small Entrepreneurs by Islamic Banks” is available on Amazon. He awaits publication of his latest book, “Islamic Banking: Financial Practices,” which examines Riba and other financial practices within Islamic banking. His most recent presentation was at the United Nations Headquarters in Geneva, where he discussed the role of Islamic banks in financing small businesses in Kenya.</p><p>Described in one word, he is “wanderlust.” As Shakespeare said, “The world is my oyster.” He has traveled to over 42 countries.</p><h2><span class="tag">Links</span></h2><ul class="links"><li><a href="https://myyu.ca/faculty/mohammed-alam/">Yorkville University faculty page</a></li><li><a href="https://www.amazon.ca/Empowering-Small-Entrepreneurs-Islamic-Banks/dp/3838312414">Book on Amazon</a></li><li><a href="https://lup.lub.lu.se/search/publication/da34de11-6080-4432-a2cd-fedc6ebd6347">Lund University: Financing of Small and Cottage Industries in Bangladesh by Islamic Banks</a></li><li><a href="cv.pdf">Download complete CV</a></li></ul><h2><span class="tag">Conferences</span></h2>${vid("v3lbM0vnv8U", "WASD online conference, London, October 18 to 19, 2020: Online Learning the New Normal Post Covid-19")}${vid("Ns1e6iOGNBo", "United Nations Environment Program, London, June 2019: Islamic banking financing to SME (with Nurulayn Binte Noor)")}${vid("M5AkrvKUikg", "United Nations HQ, Geneva, April 11, 2018: Coalescing the energies of SMEs (with his daughter Nurulayn Binte Noor)")}${vid("jwlCad44-iE", "Canary Wharf, London, July 2016: Small entrepreneurs finance by Islamic Banks, an empirical review")}`,
         tariqat: () =>
           `<h1>Tariqat our Way</h1>${vid("5q61f7Bk3R4", "Part 1. TaqwaTalks Series Introduction")}${vid("SObPCXfLz6Y", "Part 2. The Importance of Sabr (Patience) During Prayers")}${vid("FRoB6064fZ8", "Part 3. The Significance of Islam, Imaan and Ehsaan")}`,
         shariat: () =>
