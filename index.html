@@ -6,22 +6,32 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
+    <link rel="icon" type="image/png" href="images/favicon.svg" />
+    <meta
+      name="description"
+      content="Mission Al Noor International. Tariqat our way, Shariat our objectives, Khidmat our mission."
+    />
+    <meta property="og:title" content="Mission Al Noor International" />
+    <meta
+      property="og:description"
+      content="A spiritual family devoted to remembrance, knowledge and service."
+    />
+    <meta property="og:image" content="images/founder.jpg" />
     <title>Mission Al Noor</title>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Google+Sans:wght@400;500&family=Noto+Nastaliq+Urdu&family=Amiri&display=swap"
     />
     <style>
       :root {
         --bg: #e6f8d1;
         --s: #d6ebc3;
-        --a: #d6ebc3;
+        --l: #f3fce8;
         --t: #232820;
         --m: #3f4d33;
+        --d: #2f3d25;
+        --x: 0px;
+        --y: 0px;
         color-scheme: light;
         box-sizing: border-box;
         padding-top: env(safe-area-inset-top, 0px);
@@ -33,313 +43,354 @@
         box-sizing: inherit;
       }
       html {
-        scroll-padding-top: env(safe-area-inset-top, 0px);
+        scroll-padding-top: 5rem;
         scrollbar-gutter: stable;
-      }
-      body {
-        display: flex;
-        flex-direction: column;
-        min-height: calc(
-          100vh - env(safe-area-inset-top, 0px) -
-            env(safe-area-inset-bottom, 0px)
-        );
+        scroll-behavior: smooth;
       }
       body {
         margin: 0;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
         background: var(--bg);
         color: var(--t);
         font:
-          400 1rem/1.7 "Google Sans",
-          "Google Sans Flex",
-          "IBM Plex Sans Arabic",
+          400 1rem/1.75 "Google Sans",
           system-ui,
           sans-serif;
-      }
-      a {
-        color: inherit;
-        text-underline-offset: 3px;
-      }
-      main a,
-      footer a,
-      .brand {
-        border-radius: 0.5rem;
-        transition: background 0.15s;
-      }
-      main a {
-        padding: 0.1rem 0.35rem;
-        margin: 0 -0.35rem;
-      }
-      main a:hover {
-        background: var(--a);
-      }
-      .card a:hover,
-      .founder a:hover {
-        background: var(--bg);
-      }
-      footer a {
-        padding: 0.1rem 0.4rem;
-      }
-      footer a:hover,
-      .brand:hover {
-        background: var(--bg);
-      }
-      header {
-        background: var(--a);
-        color: var(--t);
-        text-align: center;
-        padding: 1.2rem clamp(1rem, 4vw, 3rem) 0;
+        overflow-x: hidden;
       }
       body::before {
         content: "";
         position: fixed;
-        inset: 0 0 auto;
-        height: env(safe-area-inset-top, 0px);
-        background: var(--a);
-        z-index: 30;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(
+          28rem circle at var(--x) var(--y),
+          rgba(255, 255, 255, 0.55),
+          transparent 70%
+        );
       }
-      #bar {
-        position: sticky;
-        top: env(safe-area-inset-top, 0px);
-        z-index: 20;
-        background: var(--a);
-        padding: 0.8rem clamp(1rem, 4vw, 3rem);
-        transition: box-shadow 0.2s;
+      h1,
+      h2,
+      h3,
+      .serif {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 600;
+        line-height: 1.08;
+        letter-spacing: -0.01em;
       }
-      #bar.stuck {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+      h1 {
+        font-size: clamp(2.3rem, 7vw, 4.2rem);
+        margin: 0 0 1.2rem;
       }
-      #bar .row {
-        display: none;
+      h2 {
+        font-size: clamp(1.6rem, 4vw, 2.3rem);
+        margin: 2.6rem 0 0.8rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+        margin: 0 0 0.4rem;
+      }
+      p {
+        max-width: none;
+        overflow-wrap: anywhere;
+      }
+      main > p,
+      article p {
+        text-align: justify;
+        hyphens: auto;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+      }
+      :focus-visible {
+        outline: 2px solid var(--d);
+        outline-offset: 3px;
+        border-radius: 0.4rem;
+      }
+      #pg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0;
+        background: var(--d);
+        z-index: 60;
+      }
+      #nav {
+        position: fixed;
+        top: calc(0.8rem + env(safe-area-inset-top, 0px));
+        left: 50%;
+        translate: -50% 0;
+        z-index: 50;
+        width: min(60rem, calc(100% - 1.6rem));
+        background: rgba(243, 252, 232, 0.8);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(63, 77, 51, 0.15);
+        border-radius: 999px;
+        padding: 0.35rem 0.5rem 0.35rem 1.2rem;
+        display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
+        transition: box-shadow 0.3s;
       }
-      .bb {
-        font-weight: 600;
-        font-size: clamp(1.35rem, 6vw, 2rem);
-        line-height: 1.2;
+      #nav.st {
+        box-shadow: 0 8px 30px rgba(47, 61, 37, 0.14);
+      }
+      .br {
+        font:
+          600 1.45rem/1 "Cormorant Garamond",
+          serif;
         text-decoration: none;
-        padding: 0.2rem 0.6rem;
-        margin-left: -0.6rem;
-        border-radius: 0.7rem;
-        transition: background 0.15s;
-      }
-      .bb:hover {
-        background: var(--bg);
-      }
-      .brand {
-        font-size: clamp(1.7rem, 6vw, 2.2rem);
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-block;
-        line-height: 1.2;
-        padding: 0.1rem 0.8rem;
-        border-radius: 0.7rem;
-      }
-      .tag {
-        background: var(--a);
-        color: var(--m);
-        font-size: clamp(0.85rem, 2.4vw, 1.15rem);
-        margin: 0;
-        text-align: center;
-        padding: 0.2rem clamp(1rem, 4vw, 3rem) 0;
-      }
-      .tag span {
         white-space: nowrap;
       }
-      nav {
+      #lk {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.25rem 0.5rem;
+        gap: 0.1rem;
+      }
+      #lk a {
+        padding: 0.4rem 0.7rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.88rem;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      #lk a:hover {
+        background: var(--s);
+      }
+      #lk a.on {
+        background: var(--d);
+        color: var(--l);
       }
       #mb {
         display: none;
         border: 0;
         border-radius: 999px;
-        background: var(--bg);
-        color: var(--t);
-        font: inherit;
-        font-weight: 500;
-        padding: 0.45rem 1.2rem;
-        cursor: pointer;
-        transition: background 0.15s;
-      }
-      #mb:hover {
         background: var(--s);
-        outline: 2px solid var(--bg);
-      }
-      @media (max-width: 45.99rem) {
-        header {
-          display: none;
-        }
-        #bar {
-          order: -2;
-          padding: 0.6rem 1rem;
-        }
-        .tag {
-          order: -1;
-          text-align: left;
-          padding: 0 1rem 0.9rem;
-        }
-        #bar .row {
-          display: flex;
-        }
-        #mb {
-          display: inline-block;
-        }
-        nav {
-          display: none;
-          flex-direction: column;
-          margin-top: 0.6rem;
-          max-height: calc(100vh - 6rem);
-          overflow: auto;
-        }
-        nav.open {
-          display: flex;
-        }
-        nav a {
-          text-align: center;
-          padding: 0.55rem 0.7rem;
-        }
-      }
-      #up {
-        position: fixed;
-        right: max(1rem, env(safe-area-inset-right, 0px));
-        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
-        width: 3rem;
-        height: 3rem;
-        border: 2px solid var(--a);
-        border-radius: 50%;
-        background: var(--a);
         color: var(--t);
-        font: inherit;
-        font-size: 1.4rem;
-        line-height: 1;
+        font:
+          500 0.92rem "Google Sans",
+          sans-serif;
+        padding: 0.5rem 1.1rem;
         cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-        opacity: 0;
-        pointer-events: none;
-        transition:
-          opacity 0.2s,
-          background 0.15s;
       }
-      #up.on {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      #up:hover {
-        background: var(--bg);
-      }
-      nav a {
-        padding: 0.3rem 0.7rem;
-        border-radius: 999px;
-        text-decoration: none;
-        font-weight: 500;
-      }
-      nav a.on,
-      nav a:hover {
-        background: var(--bg);
-        color: var(--t);
-      }
-      main::after {
-        content: "";
-        display: block;
-        clear: both;
+      @media (max-width: 61.99rem) {
+        #mb {
+          display: block;
+        }
+        #lk {
+          display: none;
+          position: absolute;
+          top: calc(100% + 0.5rem);
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          background: var(--l);
+          border-radius: 1.5rem;
+          padding: 0.6rem;
+          box-shadow: 0 12px 30px rgba(47, 61, 37, 0.16);
+        }
+        #lk.open {
+          display: flex;
+        }
+        #lk a {
+          text-align: center;
+          padding: 0.7rem;
+        }
       }
       main {
         flex: 1;
         width: 100%;
-        max-width: 56rem;
+        max-width: 62rem;
         margin: 0 auto;
-        padding: 2rem clamp(1rem, 4vw, 2rem) 3rem;
+        padding: 7rem clamp(1rem, 4vw, 2rem) 4rem;
       }
-      h1 {
-        font-size: clamp(1.35rem, 4vw, 1.8rem);
-        line-height: 1.2;
-        margin: 0.2rem 0 1rem;
+      ::view-transition-old(root) {
+        animation: 0.25s ease both fo;
       }
-      h2 {
-        font-size: 1.25rem;
-        margin: 2rem 0 0.5rem;
+      ::view-transition-new(root) {
+        animation: 0.45s ease both fi;
       }
-      .grid {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: 1fr;
-        margin: 1.5rem 0;
-      }
-      @media (min-width: 46rem) {
-        .grid {
-          grid-template-columns: repeat(3, 1fr);
+      @keyframes fo {
+        to {
+          opacity: 0;
         }
       }
-      .vid {
-        aspect-ratio: 16/9;
-        width: 100%;
-        border: 0;
-        border-radius: 1rem;
-        background: var(--s);
-        display: block;
+      @keyframes fi {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
       }
-      .banner {
-        float: left;
-        width: min(16rem, 40%);
-        height: auto;
-        border-radius: 1rem;
-        margin: 0.3rem 1.5rem 1rem 0;
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2rem;
+        align-items: center;
+        min-height: min(36rem, 78vh);
+        padding: 1rem 0 3rem;
       }
-      .v {
-        margin: 1.5rem 0;
-      }
-      .v h2 {
-        margin-top: 0;
-      }
-      .card {
-        background: var(--a);
-        border-radius: 1rem;
-        padding: 1.2rem;
-      }
-      .card h2 {
-        margin-top: 0;
-      }
-      main a.btn {
-        display: inline-block;
-        background: var(--bg);
-        border: 2px solid var(--bg);
-        border-radius: 999px;
-        padding: 0.55rem 1.3rem;
+      .bis {
+        font:
+          400 clamp(1.5rem, 3.5vw, 2.1rem)/1.6 Amiri,
+          serif;
         margin: 0;
-        font-weight: 500;
-        text-decoration: none;
+        color: var(--m);
       }
-      .card a.btn:hover,
-      .founder a.btn:hover {
-        background: var(--a);
-        border-color: var(--t);
+      .lead {
+        font-size: 1.15rem;
+        color: var(--m);
+        margin: 0 0 1.5rem;
+      }
+      .arch {
+        position: relative;
+        justify-self: center;
+        width: min(100%, 24rem);
+        aspect-ratio: 3/4;
+        border-radius: 999px 999px 1.6rem 1.6rem;
+        overflow: hidden;
+        background: var(--s);
+        display: grid;
+        place-items: center;
+        font:
+          600 3rem "Cormorant Garamond",
+          serif;
+        box-shadow:
+          0 0 0 0.6rem var(--bg),
+          0 0 0 calc(0.6rem + 1px) var(--m),
+          0 30px 80px rgba(47, 61, 37, 0.25);
+        animation: rise 1.2s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      .arch img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        animation: zm 2.6s ease both;
+      }
+      .arch img + span {
+        display: none;
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          translate: 0 2.5rem;
+        }
+      }
+      @keyframes zm {
+        from {
+          scale: 1.18;
+        }
+      }
+      .hero h1 {
+        font-size: clamp(3rem, 9vw, 6.4rem);
+        margin: 0.2rem 0 1rem;
+        max-width: 9ch;
+      }
+      .hero h1 span {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(40%) rotate(2deg);
+        animation: up 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      }
+      .hero h1 span:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .hero h1 span:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      @keyframes up {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .tri {
+        display: grid;
+        gap: 0.1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .tri a {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        padding: 0.2rem 0.8rem;
+        margin-left: -0.8rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font:
+          500 clamp(1.2rem, 3vw, 1.7rem)/1.3 "Cormorant Garamond",
+          serif;
+        transition:
+          background 0.25s,
+          padding 0.25s;
+      }
+      .tri a:hover {
+        background: var(--s);
+        padding-left: 1.3rem;
+      }
+      .tri small {
+        font:
+          400 0.95rem "Google Sans",
+          sans-serif;
+        color: var(--m);
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+        gap: 1px;
+        background: rgba(63, 77, 51, 0.18);
+        border-radius: 1.4rem;
+        overflow: hidden;
+        margin: 1rem 0 3rem;
+      }
+      .stats div {
+        background: var(--bg);
+        padding: 1.4rem 1.2rem;
+      }
+      .stats b {
+        display: block;
+        font:
+          600 clamp(2.2rem, 5vw, 3.2rem)/1 "Cormorant Garamond",
+          serif;
+      }
+      .stats span {
+        color: var(--m);
+        font-size: 0.9rem;
       }
       .founder {
         display: grid;
-        grid-template-columns: 25% 1fr;
-        gap: 1.2rem;
-        align-items: stretch;
-        background: var(--a);
-        border-radius: 1rem;
-        padding: 1.2rem;
+        grid-template-columns: minmax(0, 13rem) 1fr;
+        gap: 1.6rem;
+        align-items: center;
+        background: var(--s);
+        border-radius: 2rem;
+        padding: 1.4rem;
       }
       .ph {
         position: relative;
-        min-height: 9rem;
-        border-radius: 1rem;
+        aspect-ratio: 4/5;
+        border-radius: 1.4rem;
         background: var(--bg);
-        color: var(--t);
         display: grid;
         place-items: center;
-        font-weight: 600;
+        font:
+          600 2.2rem "Cormorant Garamond",
+          serif;
         overflow: hidden;
-      }
-      .ph img + span {
-        display: none;
       }
       .ph img {
         position: absolute;
@@ -349,89 +400,446 @@
         object-fit: cover;
         object-position: center top;
       }
-      .founder > div:last-child {
-        min-width: 0;
+      .ph img + span {
+        display: none;
+      }
+      .btn {
+        display: inline-block;
+        background: var(--d);
+        color: var(--l);
+        border-radius: 999px;
+        padding: 0.6rem 1.4rem;
+        text-decoration: none;
+        font-weight: 500;
+        transition:
+          transform 0.25s,
+          background 0.25s;
+      }
+      .btn:hover {
+        background: var(--t);
+        transform: translateY(-2px);
+      }
+      .panels {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 3rem 0;
+      }
+      .pn {
+        position: relative;
+        overflow: hidden;
+        background: var(--s);
+        border-radius: 1.6rem;
+        padding: 1.6rem;
+        min-height: 15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-decoration: none;
+        transition:
+          background 0.35s,
+          transform 0.35s;
+      }
+      .pn::before {
+        content: "";
+        position: absolute;
+        width: 12rem;
+        height: 12rem;
+        right: -4rem;
+        top: -4rem;
+        border: 1px solid var(--m);
+        rotate: 22deg;
+        opacity: 0.35;
+        transition:
+          rotate 0.8s,
+          scale 0.8s;
+      }
+      .pn::after {
+        content: "";
+        position: absolute;
+        width: 12rem;
+        height: 12rem;
+        right: -4rem;
+        top: -4rem;
+        border: 1px solid var(--m);
+        opacity: 0.35;
+        transition:
+          rotate 0.8s,
+          scale 0.8s;
+      }
+      .pn:hover {
+        background: var(--l);
+        transform: translateY(-4px);
+      }
+      .pn:hover::before {
+        rotate: 112deg;
+        scale: 1.25;
+      }
+      .pn:hover::after {
+        rotate: 90deg;
+        scale: 1.25;
+      }
+      .pn p {
+        margin: 0;
+        color: var(--m);
       }
       @media (max-width: 45.99rem) {
+        .panels {
+          grid-template-columns: 1fr;
+        }
+        .pn {
+          min-height: 10rem;
+        }
         .founder {
           grid-template-columns: 1fr;
         }
         .ph {
-          align-self: start;
-          min-height: 0;
-          aspect-ratio: 1 / 1;
+          width: 100%;
+          max-width: 12rem;
+          justify-self: center;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .arch {
+          width: min(100%, 19rem);
+        }
+        .tl li {
+          grid-template-columns: 1fr;
+          gap: 0.2rem;
         }
       }
-      ul {
-        padding-left: 1.2rem;
-      }
-      li {
-        margin: 0.4rem 0;
-      }
       .list a {
-        display: block;
-        margin: 0;
-        padding: 0.8rem 0.6rem;
-        border-bottom: 1px solid var(--a);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        padding: 1.1rem 0.4rem;
+        border-bottom: 1px solid rgba(63, 77, 51, 0.22);
         text-decoration: none;
-        font-weight: 500;
+        font:
+          500 1.45rem/1.25 "Cormorant Garamond",
+          serif;
+        transition:
+          padding 0.3s,
+          background 0.3s;
+      }
+      .list a:hover {
+        padding-left: 1.2rem;
+        background: var(--s);
+      }
+      .list small {
+        font:
+          400 0.85rem "Google Sans",
+          sans-serif;
+        color: var(--m);
+        white-space: nowrap;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+      .chips span {
+        background: var(--s);
+        border-radius: 999px;
+        padding: 0.25rem 0.9rem;
+        font-size: 0.9rem;
+      }
+      .v {
+        margin: 2rem 0;
+      }
+      .v h3 {
+        font-size: 1.25rem;
+      }
+      .vid {
+        aspect-ratio: 16/9;
+        width: 100%;
+        border: 0;
+        border-radius: 1.4rem;
+        background: var(--s);
+        display: block;
+      }
+      .banner {
+        float: left;
+        width: min(16rem, 40%);
+        border-radius: 1.4rem;
+        margin: 0.3rem 1.6rem 1rem 0;
       }
       .ur {
         direction: rtl;
         text-align: right;
-        line-height: 2.1;
+        line-height: 2.4;
+        font-family: "Noto Nastaliq Urdu", "Google Sans", serif;
+        background: var(--s);
+        border-radius: 1.4rem;
+        padding: 1.2rem 1.5rem;
       }
       .muted {
         color: var(--m);
       }
       .crumb {
         display: inline-block;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 0.2rem 0.8rem;
+        margin-left: -0.8rem;
+        border-radius: 999px;
+        text-decoration: none;
+      }
+      .crumb:hover,
+      .links a:hover {
+        background: var(--s);
+      }
+      article h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+      }
+      article p {
+        font-size: 1.08rem;
+      }
+      .card {
+        background: var(--s);
+        border-radius: 1.6rem;
+        padding: 1.5rem;
+        max-width: 30rem;
+      }
+      .links {
+        padding: 0;
+        list-style: none;
+      }
+      .links a {
+        display: inline-block;
+        padding: 0.25rem 0.7rem;
+        margin-left: -0.7rem;
+        border-radius: 0.6rem;
+      }
+      main::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .tl {
+        list-style: none;
+        margin: 2.5rem 0;
+        padding: 0 0 0 1.6rem;
+        border-left: 1px solid var(--m);
+      }
+      .tl li {
+        position: relative;
+        display: grid;
+        grid-template-columns: 7.5rem 1fr;
+        gap: 1rem;
+        padding: 0 0 3rem;
+        opacity: 0;
+        translate: 0 1.5rem;
+        transition:
+          opacity 0.7s,
+          translate 0.7s;
+      }
+      .tl li.in {
+        opacity: 1;
+        translate: 0;
+      }
+      .tl li::before {
+        content: "";
+        position: absolute;
+        left: calc(-1.6rem - 5px);
+        top: 0.9rem;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--d);
+      }
+      .tl time {
+        font:
+          600 2.2rem/1.1 "Cormorant Garamond",
+          serif;
+      }
+      .tl h3 {
+        margin-top: 0.2rem;
+      }
+      .tl p {
+        margin: 0.2rem 0;
+      }
+      figure {
+        margin: 1rem 0;
+      }
+      figure img {
+        display: block;
+        width: 100%;
+        border-radius: 1.2rem;
+        cursor: zoom-in;
+      }
+      .tl figure {
+        max-width: 30rem;
+      }
+      figcaption {
+        font-size: 0.85rem;
+        color: var(--m);
+        margin-top: 0.4rem;
+      }
+      .duo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+      .duo figure {
+        margin: 0;
+      }
+      .gal {
+        columns: 3 15rem;
+        column-gap: 1rem;
+        margin: 2rem 0;
+      }
+      .gal figure {
+        break-inside: avoid;
+        margin: 0 0 1rem;
+        overflow: hidden;
+        border-radius: 1.2rem;
+      }
+      .gal figure img {
+        transition: transform 0.5s;
+      }
+      .gal figure:hover img {
+        transform: scale(1.04);
+      }
+      .gal:empty::before {
+        content: "No photos yet. Add images to the images folder and they appear here.";
+        color: var(--m);
+      }
+      .q {
+        margin: 3rem 0;
+        text-align: center;
+      }
+      .q p {
+        font:
+          italic 500 clamp(1.7rem, 4vw, 2.6rem)/1.25 "Cormorant Garamond",
+          serif;
+        max-width: none;
+        margin: 0 auto 0.5rem;
+      }
+      .q small {
+        color: var(--m);
+      }
+      #lb {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        background: rgba(35, 40, 32, 0.92);
+        display: grid;
+        place-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        padding: 1rem;
+      }
+      #lb.on {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #lb img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 1rem;
+        cursor: zoom-out;
+      }
+      .pn i {
+        position: absolute;
+        top: 1rem;
+        right: 1.4rem;
+        z-index: 1;
+        font:
+          normal 3rem Amiri,
+          serif;
+        color: var(--m);
+        transition: transform 0.6s;
+      }
+      .pn:hover i {
+        transform: scale(1.15);
       }
       footer {
-        background: var(--a);
-        padding: 1.5rem clamp(1rem, 4vw, 3rem);
+        background: var(--s);
+        padding: 2rem 1rem;
         text-align: center;
-        color: var(--t);
         font-weight: 500;
       }
-      p,
-      li,
-      h1,
-      h2 {
-        overflow-wrap: anywhere;
+      footer b {
+        display: block;
+        font:
+          600 1.5rem "Cormorant Garamond",
+          serif;
+        margin-bottom: 0.2rem;
+      }
+      #up {
+        position: fixed;
+        right: max(1rem, env(safe-area-inset-right, 0px));
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        width: 3rem;
+        height: 3rem;
+        border: 0;
+        border-radius: 50%;
+        background: var(--d);
+        color: var(--l);
+        font-size: 1.3rem;
+        cursor: pointer;
+        opacity: 0;
+        translate: 0 1rem;
+        pointer-events: none;
+        transition:
+          opacity 0.3s,
+          translate 0.3s;
+      }
+      #up.on {
+        opacity: 1;
+        translate: 0;
+        pointer-events: auto;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .tl li {
+          opacity: 1;
+          translate: 0;
+        }
+        .hero h1 span {
+          opacity: 1;
+          transform: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
       }
     </style>
   </head>
   <body>
-    <header><a class="brand" href="#home">Mission Al Noor</a></header>
-    <p class="tag">
-      <span>Tariqat our Way ·</span> <span>Shariat our Objectives ·</span>
-      <span>Khidmat our Mission</span>
-    </p>
-    <div id="bar">
-      <div class="row">
-        <a class="bb" href="#home">Mission Al Noor</a
-        ><button id="mb" aria-label="Menu" aria-expanded="false">
-          ☰ Menu
-        </button>
-      </div>
-      <nav id="nav"></nav>
-    </div>
+    <div id="pg"></div>
+    <nav id="nav">
+      <a class="br" href="#home">Mission Al Noor</a>
+      <div id="lk"></div>
+      <button id="mb" aria-label="Menu" aria-expanded="false">Menu</button>
+    </nav>
     <main id="main"></main>
     <footer>
-      Mission Al Noor International ·
-      <a href="mailto:info@mission-alnoor.org">info@mission-alnoor.org</a>
+      <b>Mission Al Noor International</b
+      ><a href="mailto:info@mission-alnoor.org">info@mission-alnoor.org</a>
     </footer>
+    <div id="lb" aria-hidden="true"></div>
     <button id="up" aria-label="Scroll to top">↑</button>
     <script>
       var N = [
         ["home", "Home"],
         ["founder", "Founder"],
+        ["journey", "Journey"],
         ["tariqat", "Tariqat"],
         ["shariat", "Shariat"],
         ["khidmat", "Khidmat"],
         ["articles", "Articles"],
+        ["gallery", "Gallery"],
         ["location", "Location"],
       ];
       var A = [
@@ -467,60 +875,145 @@
         },
       ];
       var O = ["award", "book", "dua", "hadees", "umrah", "madinah"];
-      A.sort(function (x, y) {
-        return O.indexOf(x.id) - O.indexOf(y.id);
-      });
-      function list(n) {
-        return (
-          '<div class="list">' +
-          A.slice(0, n)
-            .map((a) => '<a href="#' + a.id + '">' + a.t + "</a>")
-            .join("") +
-          "</div>"
-        );
-      }
-      function vid(id, t) {
-        return (
-          '<div class="v"><h2>' +
-          t +
-          '</h2><iframe class="vid" src="https://www.youtube-nocookie.com/embed/' +
-          id +
-          '" title="' +
-          t +
-          '" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
-        );
-      }
+      A.sort((x, y) => O.indexOf(x.id) - O.indexOf(y.id));
+      var rt = (a) =>
+        Math.max(
+          1,
+          Math.round(a.h.replace(/<[^>]+>/g, " ").split(/\s+/).length / 200),
+        ) + " min read";
+      var list = (n) =>
+        '<div class="list">' +
+        A.slice(0, n)
+          .map(
+            (a) =>
+              '<a href="#' +
+              a.id +
+              '"><span>' +
+              a.t +
+              "</span><small>" +
+              rt(a) +
+              "</small></a>",
+          )
+          .join("") +
+        "</div>";
+      var vid = (id, t) =>
+        '<div class="v"><h3>' +
+        t +
+        '</h3><iframe class="vid" src="https://www.youtube-nocookie.com/embed/' +
+        id +
+        '" title="' +
+        t +
+        '" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
       var IMG =
-        '<img class="banner" src="tsk.jpg" alt="Tariqat, Shariat and Khidmat" onerror="this.remove()">';
+        '<img class="banner" src="./images/tsk.jpg" alt="Tariqat, Shariat and Khidmat" onerror="this.remove()">';
+      var fig = (f, a, c) =>
+        '<figure><img src="images/' +
+        f +
+        '" alt="' +
+        a +
+        '" loading="lazy" onerror="this.closest(\'figure\').remove()">' +
+        (c ? "<figcaption>" + c + "</figcaption>" : "") +
+        "</figure>";
+      var E = [
+        {
+          y: "1976",
+          t: "Teaching begins",
+          d: "Dr. Alam starts teaching accounting. He later teaches CPA students in Nairobi, Kenya.",
+        },
+        {
+          y: "1979",
+          t: "The path begins",
+          d: "Association with Syed Shaikh Yusuf Hashim Al-Rifa’i begins. Khilafat in the Rifa’i tariqa follows.",
+        },
+        {
+          y: "2008",
+          t: "Outstanding Research Award",
+          d: "May 30. The Institute of Business and Finance Research honors his paper at the Global Conference on Business and Finance, San Jose, Costa Rica.",
+        },
+        {
+          y: "2009",
+          t: "Book published",
+          d: "Empowering Small Entrepreneurs by Islamic Banks appears, the first publication from the cycle of Mission Al Noor.",
+        },
+        {
+          y: "2016",
+          t: "Canary Wharf, London",
+          d: "July. He presents an empirical review of small entrepreneurs finance by Islamic banks.",
+        },
+        {
+          y: "2018",
+          t: "United Nations, Geneva",
+          d: "April 11. He speaks on coalescing the energies of SMEs with his daughter Nurulayn Binte Noor.",
+        },
+        {
+          y: "2019",
+          t: "UN Environment Program, London",
+          d: "June. He presents Islamic banking finance for SMEs with Nurulayn Binte Noor.",
+        },
+        {
+          y: "2020",
+          t: "WASD online conference",
+          d: "October 18 to 19. He joins the London conference on online learning after Covid-19.",
+        },
+        {
+          y: "2023",
+          t: "Stay in Canada",
+          d: "February 23. The founder’s current stay in Canada begins.",
+        },
+      ];
+      var io = new IntersectionObserver(
+        (es) =>
+          es.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.15 },
+      );
       var P = {
-        home: () =>
-          `<h1>Welcome to Mission Al Noor</h1><div class="founder"><div class="ph"><img src="pp.jpg" alt="" onerror="this.remove()"><span>MNA</span></div><div><h2 style="margin-top:0">Founder and Patron: Prof. Dr. Mohammed Nurul Alam</h2><p>Professor of Accounting at Yorkville University in Toronto, Canada. Ph.D. in “Small Business Finance by Islamic Banks” from Lund University, Sweden.</p><p><a class="btn" href="#founder">Read the full profile</a></p></div></div><div class="grid"><div class="card"><h2>Tariqat our Way</h2><p>The TaqwaTalks video series.</p><a class="btn" href="#tariqat">Watch</a></div><div class="card"><h2>Shariat our Objectives</h2><p>The way to the pond: ‘ilm, ‘amal and ikhlas.</p><a class="btn" href="#shariat">Read</a></div><div class="card"><h2>Khidmat our Mission</h2><p>Selfless service as a means to divine favour.</p><a class="btn" href="#khidmat">Read</a></div></div><h2>Featured articles</h2>${list(3)}<p><a href="#articles">More articles</a></p>`,
+        home: () => `<section class="hero"><div><p class="bis" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p><h1 class="serif"><span>Mission</span> <span>Al</span> <span>Noor</span></h1><p class="lead">Walking the path of light. A spiritual family devoted to remembrance, knowledge and service.</p><ul class="tri"><li><a href="#tariqat">Tariqat<small>our way</small></a></li><li><a href="#shariat">Shariat<small>our objectives</small></a></li><li><a href="#khidmat">Khidmat<small>our mission</small></a></li></ul></div><div class="arch"><img src="images/founder.jpg" alt="Prof. Dr. Mohammed Nurul Alam" onerror="this.remove()"><span>MNA</span></div></section>
+<div class="stats"><div><b data-n="1976">0</b><span>Teaching since</span></div><div><b data-n="42">0</b><span>Countries visited</span></div><div><b data-n="20" data-s="+">0</b><span>Countries of conference talks</span></div><div><b data-n="72" data-s="+">0</b><span>Countries at the 2008 award conference</span></div></div>
+<div class="q"><p>“Allah is the Light of the heavens and the earth.”</p><small>Surah An-Nur, 24:35</small></div><div class="founder"><div class="ph"><img src="images/founder-2.jpg" alt="Prof. Dr. Mohammed Nurul Alam" onerror="this.remove()"><span>MNA</span></div><div><h2 style="margin-top:0">Founder and Patron: Prof. Dr. Mohammed Nurul Alam</h2><p>Professor of Accounting at Yorkville University in Toronto, Canada. Ph.D. in “Small Business Finance by Islamic Banks” from Lund University, Sweden.</p><p>Associated since 1979 with Syed Shaikh Yusuf Hashim Al-Rifa’i, he was granted khilafat in the Rifa’i tariqa to serve the Ummah across the globe.</p><a class="btn" href="#founder">Read the full profile</a></div></div>
+<div class="panels"><a class="pn" href="#tariqat"><i lang="ar">ذكر</i><h3>Tariqat</h3><p>Remembrance of Allah through the Nafi Esbaat and the silent zikr of the heart. Watch the TaqwaTalks series.</p></a><a class="pn" href="#shariat"><i lang="ar">علم</i><h3>Shariat</h3><p>Study of the Qur’an, Sunnah and the inner sciences of tasawwuf: ‘ilm, ‘amal and ikhlas.</p></a><a class="pn" href="#khidmat"><i lang="ar">خدمة</i><h3>Khidmat</h3><p>Serving the Ummah across continents with compassion and humility.</p></a></div>
+<h2>Featured articles</h2>${list(3)}<p><a href="#articles">See all articles</a></p>`,
         founder: () =>
-          `<h1>Founder and Patron: Prof. Dr. Mohammed Nurul Alam</h1><p>Dr. Mohammed Nurul Alam is a Professor of Accounting at Yorkville University in Toronto, Canada. He holds a Ph.D. in “Small Business Finance by Islamic Banks” from Lund University in Sweden. His academic background includes a Bachelor of Commerce with Honours, a Master’s Degree in Accounting, and completion of a Chartered Accounting Course (CACC).</p><p>Dr. Alam’s teaching journey dates back to 1976. He has taught accounting to CPA students in Nairobi, Kenya, and collaborated with the United Nations Development Program (UNDP) as a Lecturer in Accounting and Finance at the Kenya Institute of Administration (KIA), Nairobi. He served as an Assistant Professor in Accounting and as Dean of the Commerce Faculty at Islamic University, Bangladesh.</p><p>He coordinated the Federal Government project “Fresh Start,” funded by the Ontario Trillium Foundation, Canada. The project taught women in the Region of Peel how to start small home-based businesses.</p><p>Dr. Alam worked as an Assistant Professor in Accounting at Sultan Qaboos University in Oman. He held the position of Associate Professor at Canadian University in Dubai, UAE, where he taught Managerial Accounting to MBA students. He was a SIDA (Swedish International Development Cooperation Agency) Research Fellow at Lund University, where he conducted research and taught MBA courses on banking in Southeast Asian nations and international marketing.</p><p>He served as a visiting professor at Trisakti University in West Jakarta, Indonesia, in the Department of Islamic Economics and Finance, where he developed and taught a PhD course on Small Business Finance by Islamic Banks and Networking. He conducted his PhD research by visiting Islamic banks in Kuwait, Saudi Arabia, Sudan, Turkey, Northern Cyprus, Pakistan and Bangladesh.</p><p>He has presented his work on “Small Entrepreneurs Finance by Islamic Banks” at international conferences in over 20 countries and published numerous articles in international journals. His 2009 book “Empowering Small Entrepreneurs by Islamic Banks” is available on Amazon. He awaits publication of his latest book, “Islamic Banking: Financial Practices,” which examines Riba and other financial practices within Islamic banking. His most recent presentation was at the United Nations Headquarters in Geneva, where he discussed the role of Islamic banks in financing small businesses in Kenya.</p><p>Described in one word, he is “wanderlust.” As Shakespeare said, “The world is my oyster.” He has traveled to over 42 countries.</p><h2>Links</h2><ul><li><a href="https://myyu.ca/faculty/mohammed-alam/">Yorkville University faculty page</a></li><li><a href="https://www.amazon.ca/Empowering-Small-Entrepreneurs-Islamic-Banks/dp/3838312414">Book on Amazon</a></li><li><a href="https://lup.lub.lu.se/search/publication/da34de11-6080-4432-a2cd-fedc6ebd6347">Lund University: Financing of Small and Cottage Industries in Bangladesh by Islamic Banks</a></li><li><a href="cv.pdf">Download complete CV</a></li></ul><h2>Conferences</h2>${vid("v3lbM0vnv8U", "WASD online conference, London, October 18 to 19, 2020: Online Learning the New Normal Post Covid-19")}${vid("Ns1e6iOGNBo", "United Nations Environment Program, London, June 2019: Islamic banking financing to SME (with Nurulayn Binte Noor)")}${vid("M5AkrvKUikg", "United Nations HQ, Geneva, April 11, 2018: Coalescing the energies of SMEs (with his daughter Nurulayn Binte Noor)")}${vid("jwlCad44-iE", "Canary Wharf, London, July 2016: Small entrepreneurs finance by Islamic Banks, an empirical review")}`,
+          `<h1>Prof. Dr. Mohammed Nurul Alam</h1><p class="muted">Founder and Patron</p><div class="duo">${fig("founder-3.jpg", "Portrait of the founder")}</div><div class="chips"><span>Kenya</span><span>Bangladesh</span><span>Oman</span><span>UAE</span><span>Sweden</span><span>Indonesia</span><span>Canada</span></div><p>Dr. Mohammed Nurul Alam is a Professor of Accounting at Yorkville University in Toronto, Canada. He holds a Ph.D. in “Small Business Finance by Islamic Banks” from Lund University in Sweden. His academic background includes a Bachelor of Commerce with Honours, a Master’s Degree in Accounting, and completion of a Chartered Accounting Course (CACC).</p><p>Dr. Alam’s teaching journey dates back to 1976. He has taught accounting to CPA students in Nairobi, Kenya, and collaborated with the United Nations Development Program (UNDP) as a Lecturer in Accounting and Finance at the Kenya Institute of Administration (KIA), Nairobi. He served as an Assistant Professor in Accounting and as Dean of the Commerce Faculty at Islamic University, Bangladesh.</p><p>He coordinated the Federal Government project “Fresh Start,” funded by the Ontario Trillium Foundation, Canada. The project taught women in the Region of Peel how to start small home-based businesses.</p><p>Dr. Alam worked as an Assistant Professor in Accounting at Sultan Qaboos University in Oman. He held the position of Associate Professor at Canadian University in Dubai, UAE, where he taught Managerial Accounting to MBA students. He was a SIDA (Swedish International Development Cooperation Agency) Research Fellow at Lund University, where he conducted research and taught MBA courses on banking in Southeast Asian nations and international marketing.</p><p>He served as a visiting professor at Trisakti University in West Jakarta, Indonesia, in the Department of Islamic Economics and Finance, where he developed and taught a PhD course on Small Business Finance by Islamic Banks and Networking. He conducted his PhD research by visiting Islamic banks in Kuwait, Saudi Arabia, Sudan, Turkey, Northern Cyprus, Pakistan and Bangladesh.</p><p>He has presented his work on “Small Entrepreneurs Finance by Islamic Banks” at international conferences in over 20 countries and published numerous articles in international journals. His 2009 book “Empowering Small Entrepreneurs by Islamic Banks” is available on Amazon. He awaits publication of his latest book, “Islamic Banking: Financial Practices,” which examines Riba and other financial practices within Islamic banking. His most recent presentation was at the United Nations Headquarters in Geneva, where he discussed the role of Islamic banks in financing small businesses in Kenya.</p><p>Described in one word, he is “wanderlust.” As Shakespeare said, “The world is my oyster.” He has traveled to over 42 countries.</p><h2>Links</h2><ul class="links"><li><a href="https://myyu.ca/faculty/mohammed-alam/">Yorkville University faculty page</a></li><li><a href="https://www.amazon.ca/Empowering-Small-Entrepreneurs-Islamic-Banks/dp/3838312414">Book on Amazon</a></li><li><a href="https://lup.lub.lu.se/search/publication/da34de11-6080-4432-a2cd-fedc6ebd6347">Lund University: Financing of Small and Cottage Industries in Bangladesh by Islamic Banks</a></li><li><a href="cv.pdf">Download complete CV</a></li></ul><h2>Conferences</h2>${vid("v3lbM0vnv8U", "WASD online conference, London, October 18 to 19, 2020: Online Learning the New Normal Post Covid-19")}${vid("Ns1e6iOGNBo", "United Nations Environment Program, London, June 2019: Islamic banking financing to SME (with Nurulayn Binte Noor)")}${vid("M5AkrvKUikg", "United Nations HQ, Geneva, April 11, 2018: Coalescing the energies of SMEs (with his daughter Nurulayn Binte Noor)")}${vid("jwlCad44-iE", "Canary Wharf, London, July 2016: Small entrepreneurs finance by Islamic Banks, an empirical review")}`,
         tariqat: () =>
-          `<h1>Tariqat our Way</h1><p class="muted">TaqwaTalks series</p>${vid("5q61f7Bk3R4", "Part 1. TaqwaTalks Series Introduction")}${vid("SObPCXfLz6Y", "Part 2. The Importance of Sabr (Patience) During Prayers")}${vid("FRoB6064fZ8", "Part 3. The Significance of Islam, Imaan and Ehsaan")}`,
+          `<h1>Tariqat our Way</h1>${vid("5q61f7Bk3R4", "Part 1. TaqwaTalks Series Introduction")}${vid("SObPCXfLz6Y", "Part 2. The Importance of Sabr (Patience) During Prayers")}${vid("FRoB6064fZ8", "Part 3. The Significance of Islam, Imaan and Ehsaan")}`,
         shariat: () =>
           `<h1>Shariat our Objectives</h1>${IMG}<p>Linguistically, Shari’a means the way or the path to the pond. It is the route the traveller must tread to quench his thirst and assure the safety of his flock. Like water, the Shari’a is both internal and external to the human condition. It constitutes the human soul and nourishes the soul. ‘Aisha bint Abi Bakr (may Allah be well-pleased with them both) said, “The demeanor of the Prophet [peace and blessings be upon him] was the Qur’an” (kana khuluquhu al-Qur’an). Quranic injunctions were the Messenger’s sacred nature. The Shari’a was his fitra.</p><p>The Mujaddid Alf-i Thani, Shaykh Ahmad Sirhindi, writes in one of his letters (maktubat) that the Shari’a has three parts: ‘ilm (knowledge), ‘amal (practice) and ikhlas (sincerity). Attaining Shari’a depends on realizing these three. Without knowledge, practice is impeded. Without sincerity, both are misguided.</p><p>He continues that tariqa and haqiqa (the attainment of a level of consciousness and spirituality in full realization of Allah’s all-encompassing existence) both belong to the third element, ikhlas. Tariqa is therefore an indispensable precondition for attaining Shari’a. The single objective of tariqa is to facilitate Shari’a on the individual and social levels.</p><p>The people of tariqa are the people of Shari’a. During the sojourn of the spiritual wayfarer, the inner wisdoms of the outer norms become apparent. The ultimate aim is rida (contentment with Allah’s commands), the final destination of both suluk (being preoccupied with Allah) and jazb (being absorbed in Allah).</p>`,
         khidmat: () =>
           `<h1>Khidmat our Mission</h1>${IMG}<p>Khidmat is the Persian, and thus Urdu, equivalent of the Arabic Khidma, which means selfless service. The Prophetic hadith explains khidmat as a means to divine favour: “Allah is in the assistance of His servant as long as His servant is in the assistance of others” (Sahih Muslim). The scholars of the inward insist the degree of Allah’s assistance (‘awn or nusra) reflects the ikhlas, the sincerity and purity of intention, in serving the other. Ikhlas relates to seeking the Creator’s favour, not reciprocal or future favour from His creation, and not ostentation (riya).</p><p>To serve a fellow human being, one must first know his or her needs. Such knowledge comes from companionship, nearness and affection. The khadim must at least be approachable, though this is a lesser rank than persistently asking after and caring for the welfare of others.</p><p>Beyond safeguarding the temporal and spiritual wellbeing of friends and acquaintances, he who seeks divine grace through service to humanity will, as a religious duty, seek out the less fortunate: the needy, the orphans, the widowed, the oppressed, and those whose religious rank is a means to divine pleasure and proximity. Khidmat is at the heart of tariqa and is understood as disseminating grace as a means to increase grace.</p><p>Shaykh Abdal Qadir al-Jilani (may Allah sanctify his secret) related that shukr, thankfulness to Allah, is expressed by three means: shukr of the tongue, of the heart and of the limbs. The latter is expressed through khidma.</p><p>His spiritual heir, Shaykh al-Akbar Muhyiuddin Ibn ‘Arabi (may Allah sanctify his secret), in his work Ruh al-Quds, chides those Sufis who avoid khidma, for Sufism without khidma is motion without movement. Shaykh Sa’adi sums up in a Persian couplet: ‘Ibadat bajuz khidmat-e khalq neest. Worship without service of mankind comes to naught.</p>`,
         location: () =>
-          `<h1>Current Location of our Founder</h1><div class="card"><h2>Canada</h2><p>Stay from: February 23, 2023</p><p>Contact person: Nargis Ara Begum<br>Mobile: <a href="tel:+16475687629">+1 647 5687629</a><br>Email: <a href="mailto:mnfsin6@gmail.com">mnfsin6@gmail.com</a></p></div><h2>General contact</h2><p><a href="mailto:info@mission-alnoor.org">info@mission-alnoor.org</a></p>`,
+          `<h1>Current Location of our Founder</h1><div class="card"><h3>Canada</h3><p>Stay from: February 23, 2023</p><p>Contact person: Nargis Ara Begum<br>Mobile: <a href="tel:+16475687629">+1 647 5687629</a><br>Email: <a href="mailto:mnfsin6@gmail.com">mnfsin6@gmail.com</a></p></div><h2>General contact</h2><p><a href="mailto:info@mission-alnoor.org">info@mission-alnoor.org</a></p>`,
+        journey: () =>
+          `<h1>The Journey</h1><p class="muted">Milestones from the dates on this site.</p><ol class="tl">${E.map((e) => "<li><time>" + e.y + "</time><div><h3>" + e.t + "</h3><p>" + e.d + "</p>" + fig("events/" + e.y + ".jpg", e.t) + "</div></li>").join("")}</ol>`,
+        gallery: () =>
+          `<h1>Gallery</h1><p class="muted">Moments from gatherings and conferences. Select a photo to enlarge.</p><div class="gal">${[2, 3, 4, 5, 6, 7, 8].reduce((s, i) => s + fig("founder-" + i + ".jpg", "Founder photo " + i), fig("founder.jpg", "Portrait of the founder"))}${E.map((e) => fig("events/" + e.y + ".jpg", e.t, e.y + ": " + e.t)).join("")}</div>`,
         articles: () =>
           `<h1>Latest Articles and Programs</h1>${list(99)}<p class="muted">Older posts will appear here as they are added.</p>`,
       };
-      function render() {
+      var $ = (id) => document.getElementById(id),
+        lk = $("lk"),
+        mb = $("mb"),
+        up = $("up"),
+        nav = $("nav"),
+        pg = $("pg");
+      function draw() {
         var k = location.hash.slice(1) || "home",
-          a = A.find((x) => x.id === k),
-          m = document.getElementById("main");
-        m.innerHTML = a
+          a = A.find((x) => x.id === k);
+        $("main").innerHTML = a
           ? '<a class="crumb" href="#articles">← All articles</a><article><h1>' +
             a.t +
-            "</h1>" +
+            '</h1><p class="muted">' +
+            rt(a) +
+            "</p>" +
             a.h +
             "</article>"
           : (P[k] || P.home)();
         var cur = a ? "articles" : P[k] ? k : "home";
-        document.getElementById("nav").innerHTML = N.map(
+        lk.innerHTML = N.map(
           (n) =>
             '<a href="#' +
             n[0] +
@@ -530,33 +1023,61 @@
             n[1] +
             "</a>",
         ).join("");
+        lk.classList.remove("open");
+        mb.setAttribute("aria-expanded", "false");
         window.scrollTo(0, 0);
-        document.getElementById("nav").classList.remove("open");
-        document.getElementById("mb").setAttribute("aria-expanded", "false");
+        counters();
+        document.querySelectorAll(".tl li").forEach((li) => io.observe(li));
+      }
+      function render() {
+        document.startViewTransition
+          ? document.startViewTransition(draw)
+          : draw();
+      }
+      function counters() {
+        document.querySelectorAll("[data-n]").forEach((e) => {
+          var n = +e.dataset.n,
+            s = e.dataset.s || "",
+            t0 = performance.now();
+          (function f(t) {
+            var p = Math.min(1, (t - t0) / 1400);
+            e.textContent =
+              Math.round(n * (1 - Math.pow(1 - p, 3))) + (p == 1 ? s : "");
+            if (p < 1) requestAnimationFrame(f);
+          })(t0);
+        });
       }
       addEventListener("hashchange", render);
       render();
-      var up = document.getElementById("up"),
-        mb = document.getElementById("mb");
       mb.onclick = function () {
-        var o = document.getElementById("nav").classList.toggle("open");
-        mb.setAttribute("aria-expanded", o);
+        mb.setAttribute("aria-expanded", lk.classList.toggle("open"));
       };
-      function sc() {
-        up.classList.toggle("on", window.scrollY > 300);
-        document
-          .getElementById("bar")
-          .classList.toggle(
-            "stuck",
-            document.getElementById("bar").getBoundingClientRect().top <= 0 &&
-              window.scrollY > 0,
-          );
-      }
-      addEventListener("scroll", sc);
-      sc();
       up.onclick = function () {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        scrollTo({ top: 0 });
       };
+      document.addEventListener("click", (e) => {
+        var i = e.target.closest("figure img");
+        if (!i) return;
+        $("lb").innerHTML = '<img src="' + i.src + '" alt="' + i.alt + '">';
+        $("lb").classList.add("on");
+      });
+      $("lb").onclick = () => $("lb").classList.remove("on");
+      addEventListener("keydown", (e) => {
+        if (e.key == "Escape") $("lb").classList.remove("on");
+      });
+      addEventListener("pointermove", (e) => {
+        document.body.style.setProperty("--x", e.clientX + "px");
+        document.body.style.setProperty("--y", e.clientY + "px");
+      });
+      function sc() {
+        var h = document.documentElement,
+          m = h.scrollHeight - innerHeight;
+        up.classList.toggle("on", scrollY > 300);
+        nav.classList.toggle("st", scrollY > 10);
+        pg.style.width = (m > 0 ? (scrollY / m) * 100 : 0) + "%";
+      }
+      addEventListener("scroll", sc, { passive: true });
+      sc();
     </script>
   </body>
 </html>
